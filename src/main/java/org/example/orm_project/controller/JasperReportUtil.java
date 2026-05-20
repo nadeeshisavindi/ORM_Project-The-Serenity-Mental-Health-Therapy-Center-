@@ -1,7 +1,6 @@
 package org.example.orm_project.controller;
 
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.InputStream;
@@ -17,16 +16,16 @@ public class JasperReportUtil {
 
     public static void showPaymentReport() {
         try {
-            // .jrxml compile කරලා .jasper හදනවා
+
             InputStream reportStream = JasperReportUtil.class
-                    .getResourceAsStream("/org/example/orm_project/report/payment.jrxml");
+                    .getResourceAsStream("report/therapist.jrxml");
 
             JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);
 
-            // DB connection
+
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
-            // Report fill කරනවා
+
             JasperPrint jasperPrint = JasperFillManager.fillReport(
                     jasperReport,
                     new HashMap<>(),
@@ -35,11 +34,13 @@ public class JasperReportUtil {
 
             connection.close();
 
-            // Report viewer show කරනවා
+
             JasperViewer.viewReport(jasperPrint, false);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
 }

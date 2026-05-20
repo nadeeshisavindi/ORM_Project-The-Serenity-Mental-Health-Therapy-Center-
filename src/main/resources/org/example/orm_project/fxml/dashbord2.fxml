@@ -15,28 +15,29 @@
             <VBox prefHeight="90.0" prefWidth="768.0" spacing="2">
                <children>
                   <Label fx:id="dateLabel" style="-fx-font-size: 11; -fx-text-fill: #888780;" text="Tuesday, May 19, 2026" />
-                  <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #26215c;" text="Good morning, Amin" textFill="WHITE">
+                  <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #ffffff;" text="Good morning, Amin">
                      <font>
                         <Font size="38.0" />
                      </font>
                   </Label>
+
                </children>
             </VBox>
             <HBox spacing="12">
                <children>
-                  <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16;                                                      -fx-background-radius: 12; -fx-border-color: #e8e6f8;" HBox.hgrow="ALWAYS">
+                  <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 20; -fx-border-color: #16213e;" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Total Patients" />
                         <Label fx:id="totalPatients" style="-fx-font-size: 28; -fx-font-weight: bold;" text="0" />
                      </children>
                   </VBox>
-                  <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16;                                                      -fx-background-radius: 12; -fx-border-color: #e8e6f8;" HBox.hgrow="ALWAYS">
+                  <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 20; -fx-border-color: #16213e;" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Therapists" />
                         <Label fx:id="totalTherapists" style="-fx-font-size: 28; -fx-font-weight: bold;" text="0" />
                      </children>
                   </VBox>
-                  <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16;                                                      -fx-background-radius: 12; -fx-border-color: #e8e6f8;" HBox.hgrow="ALWAYS">
+                  <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 20; -fx-border-color: #16213e;" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Sessions Today" />
                         <Label fx:id="sessionsToday" style="-fx-font-size: 28; -fx-font-weight: bold;" text="0" />
@@ -44,15 +45,19 @@
                   </VBox>
                </children>
             </HBox>
-            <TableView fx:id="recentSessionsTable" prefHeight="472.0" prefWidth="623.0">
-               <columns>
-                  <TableColumn fx:id="colSessionId" prefWidth="96.0" text="Session ID" />
-                  <TableColumn fx:id="colPatient" prefWidth="147.0" text="Patient" />
-                  <TableColumn fx:id="colTherapist" prefWidth="157.0" text="Therapist" />
-                  <TableColumn fx:id="colDate" prefWidth="158.0" text="Date" />
-                  <TableColumn fx:id="colStatus" prefWidth="225.0" text="Status" />
-               </columns>
-            </TableView>
+            <VBox prefWidth="570" spacing="10" style="-fx-background-color:white;-fx-padding:20;                      -fx-background-radius:12;-fx-border-color:#e8e6f8;-fx-border-radius:12;">
+               <children>
+                  <TableView fx:id="recentSessionsTable" prefHeight="472.0" prefWidth="623.0">
+                     <columns>
+                        <TableColumn fx:id="colSessionId" prefWidth="96.0" text="Session ID" />
+                        <TableColumn fx:id="colPatient" prefWidth="147.0" text="Patient" />
+                        <TableColumn fx:id="colTherapist" prefWidth="157.0" text="Therapist" />
+                        <TableColumn fx:id="colDate" prefWidth="158.0" text="Date" />
+                        <TableColumn fx:id="colStatus" prefWidth="225.0" text="Status" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
          </children>
       </VBox>
    </children>

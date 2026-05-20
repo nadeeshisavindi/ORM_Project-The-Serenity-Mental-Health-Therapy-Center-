@@ -13,6 +13,8 @@ import  org.example.orm_project.bo.BOTypes;
 import  org.example.orm_project.bo.custom.TherapistBO;
 import  org.example.orm_project.dto.tm.TherapistTM;
 import org.example.orm_project.entity.Therapist;
+import org.example.orm_project.util.JasperReportUtil;
+import javafx.event.ActionEvent;
 
 import java.net.URL;
 import java.util.List;
@@ -209,6 +211,12 @@ public class TherapistController implements Initializable {
     }
 
     @FXML
+    private void handleReportView(javafx.event.ActionEvent event) {
+        JasperReportUtil.showTherapistReport();
+    }
+
+
+    @FXML
     private void handleClear() {
         clearForm();
     }
@@ -226,10 +234,7 @@ public class TherapistController implements Initializable {
         generateId();
     }
 
-    @FXML
-    private void handleReportView() {
-        System.out.println("Report View Opened");
-    }
+
 
     private boolean validate() {
 

@@ -1,145 +1,145 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import javafx.scene.layout.*?>-->
 
-<AnchorPane prefHeight="600" prefWidth="1000"
-            style="-fx-background-color:#16213e;"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.orm_project.controller.RegistrationController">
+<!--<AnchorPane prefHeight="600" prefWidth="1000"-->
+<!--            style="-fx-background-color:#16213e;"-->
+<!--            xmlns="http://javafx.com/javafx/21"-->
+<!--            xmlns:fx="http://javafx.com/fxml/1"-->
+<!--            fx:controller="org.example.orm_project.controller.RegistrationController">-->
 
-    <children>
+<!--    <children>-->
 
-        <!-- LEFT FORM PANEL -->
-        <VBox layoutX="25" layoutY="20"
-              prefWidth="350"
-              spacing="12"
-              style="-fx-background-color:white;
-                     -fx-padding:20;
-                     -fx-background-radius:12;
-                     -fx-border-color:#e8e6f8;
-                     -fx-border-radius:12;">
+<!--        &lt;!&ndash; LEFT FORM PANEL &ndash;&gt;-->
+<!--        <VBox layoutX="25" layoutY="20"-->
+<!--              prefWidth="350"-->
+<!--              spacing="12"-->
+<!--              style="-fx-background-color:white;-->
+<!--                     -fx-padding:20;-->
+<!--                     -fx-background-radius:12;-->
+<!--                     -fx-border-color:#e8e6f8;-->
+<!--                     -fx-border-radius:12;">-->
 
-            <Label text="Registration Management"
-                   style="-fx-font-size:18;
-                          -fx-font-weight:bold;
-                          -fx-text-fill:#26215c;"/>
+<!--            <Label text="Registration Management"-->
+<!--                   style="-fx-font-size:18;-->
+<!--                          -fx-font-weight:bold;-->
+<!--                          -fx-text-fill:#26215c;"/>-->
 
-            <Label fx:id="lblMessage"
-                   visible="false"/>
+<!--            <Label fx:id="lblMessage"-->
+<!--                   visible="false"/>-->
 
-            <!-- ID -->
-            <Label text="Registration ID"/>
-            <TextField fx:id="txtId"
-                       editable="false"/>
+<!--            &lt;!&ndash; ID &ndash;&gt;-->
+<!--            <Label text="Registration ID"/>-->
+<!--            <TextField fx:id="txtId"-->
+<!--                       editable="false"/>-->
 
-            <!-- Patient -->
-            <Label text="Patient"/>
-            <ComboBox fx:id="cmbPatient"
-                      prefWidth="300"/>
+<!--            &lt;!&ndash; Patient &ndash;&gt;-->
+<!--            <Label text="Patient"/>-->
+<!--            <ComboBox fx:id="cmbPatient"-->
+<!--                      prefWidth="300"/>-->
 
-            <!-- Program -->
-            <Label text="Therapy Program"/>
-            <ComboBox fx:id="cmbProgram"
-                      prefWidth="300"/>
+<!--            &lt;!&ndash; Program &ndash;&gt;-->
+<!--            <Label text="Therapy Program"/>-->
+<!--            <ComboBox fx:id="cmbProgram"-->
+<!--                      prefWidth="300"/>-->
 
-            <!-- Date -->
-            <Label text="Registration Date"/>
-            <DatePicker fx:id="dpRegistrationDate"/>
+<!--            &lt;!&ndash; Date &ndash;&gt;-->
+<!--            <Label text="Registration Date"/>-->
+<!--            <DatePicker fx:id="dpRegistrationDate"/>-->
 
-            <!-- Amount -->
-            <Label text="Amount Paid"/>
-            <TextField fx:id="txtAmountPaid"
-                       promptText="Enter amount"/>
+<!--            &lt;!&ndash; Amount &ndash;&gt;-->
+<!--            <Label text="Amount Paid"/>-->
+<!--            <TextField fx:id="txtAmountPaid"-->
+<!--                       promptText="Enter amount"/>-->
 
-            <!-- BUTTONS -->
-            <HBox spacing="8">
+<!--            &lt;!&ndash; BUTTONS &ndash;&gt;-->
+<!--            <HBox spacing="8">-->
 
-                <Button fx:id="btnSave"
-                        text="Save"
-                        onAction="#handleSave"
-                        prefWidth="80"
-                        style="-fx-background-color:#7f77dd;
-                               -fx-text-fill:white;
-                               -fx-cursor:hand;"/>
+<!--                <Button fx:id="btnSave"-->
+<!--                        text="Save"-->
+<!--                        onAction="#handleSave"-->
+<!--                        prefWidth="80"-->
+<!--                        style="-fx-background-color:#7f77dd;-->
+<!--                               -fx-text-fill:white;-->
+<!--                               -fx-cursor:hand;"/>-->
 
-                <Button text="Reset"
-                        onAction="#handleClear"
-                        prefWidth="80"
-                        style="-fx-background-color:#888;
-                               -fx-text-fill:white;
-                               -fx-cursor:hand;"/>
+<!--                <Button text="Reset"-->
+<!--                        onAction="#handleClear"-->
+<!--                        prefWidth="80"-->
+<!--                        style="-fx-background-color:#888;-->
+<!--                               -fx-text-fill:white;-->
+<!--                               -fx-cursor:hand;"/>-->
 
-            </HBox>
+<!--            </HBox>-->
 
-            <!-- REPORT BUTTON -->
-            <Button text="Report View"
-                    prefWidth="300"
-                    style="-fx-background-color:#1d9e75;
-                           -fx-text-fill:white;
-                           -fx-font-weight:bold;
-                           -fx-background-radius:8;
-                           -fx-cursor:hand;"/>
+<!--            &lt;!&ndash; REPORT BUTTON &ndash;&gt;-->
+<!--            <Button text="Report View"-->
+<!--                    prefWidth="300"-->
+<!--                    style="-fx-background-color:#1d9e75;-->
+<!--                           -fx-text-fill:white;-->
+<!--                           -fx-font-weight:bold;-->
+<!--                           -fx-background-radius:8;-->
+<!--                           -fx-cursor:hand;"/>-->
 
-        </VBox>
+<!--        </VBox>-->
 
-        <!-- RIGHT TABLE PANEL -->
-        <VBox layoutX="400"
-              layoutY="20"
-              prefWidth="570"
-              spacing="10"
-              style="-fx-background-color:white;
-                     -fx-padding:20;
-                     -fx-background-radius:12;
-                     -fx-border-color:#e8e6f8;
-                     -fx-border-radius:12;">
+<!--        &lt;!&ndash; RIGHT TABLE PANEL &ndash;&gt;-->
+<!--        <VBox layoutX="400"-->
+<!--              layoutY="20"-->
+<!--              prefWidth="570"-->
+<!--              spacing="10"-->
+<!--              style="-fx-background-color:white;-->
+<!--                     -fx-padding:20;-->
+<!--                     -fx-background-radius:12;-->
+<!--                     -fx-border-color:#e8e6f8;-->
+<!--                     -fx-border-radius:12;">-->
 
-            <Label text="Registration List"
-                   style="-fx-font-size:16;
-                          -fx-font-weight:bold;"/>
+<!--            <Label text="Registration List"-->
+<!--                   style="-fx-font-size:16;-->
+<!--                          -fx-font-weight:bold;"/>-->
 
-            <!-- SEARCH -->
-            <TextField fx:id="txtSearch"
-                       promptText="Search registration..."
-                       style="-fx-background-radius:8;"/>
+<!--            &lt;!&ndash; SEARCH &ndash;&gt;-->
+<!--            <TextField fx:id="txtSearch"-->
+<!--                       promptText="Search registration..."-->
+<!--                       style="-fx-background-radius:8;"/>-->
 
-            <!-- TABLE -->
-            <TableView fx:id="tblRegistration"
-                       prefHeight="450">
+<!--            &lt;!&ndash; TABLE &ndash;&gt;-->
+<!--            <TableView fx:id="tblRegistration"-->
+<!--                       prefHeight="450">-->
 
-                <columns>
+<!--                <columns>-->
 
-                    <TableColumn fx:id="colId"
-                                 text="ID"
-                                 prefWidth="80"/>
+<!--                    <TableColumn fx:id="colId"-->
+<!--                                 text="ID"-->
+<!--                                 prefWidth="80"/>-->
 
-                    <TableColumn fx:id="colPatient"
-                                 text="Patient"
-                                 prefWidth="130"/>
+<!--                    <TableColumn fx:id="colPatient"-->
+<!--                                 text="Patient"-->
+<!--                                 prefWidth="130"/>-->
 
-                    <TableColumn fx:id="colProgram"
-                                 text="Program"
-                                 prefWidth="140"/>
+<!--                    <TableColumn fx:id="colProgram"-->
+<!--                                 text="Program"-->
+<!--                                 prefWidth="140"/>-->
 
-                    <TableColumn fx:id="colDate"
-                                 text="Date"
-                                 prefWidth="100"/>
+<!--                    <TableColumn fx:id="colDate"-->
+<!--                                 text="Date"-->
+<!--                                 prefWidth="100"/>-->
 
-                    <TableColumn fx:id="colAmount"
-                                 text="Amount"
-                                 prefWidth="90"/>
+<!--                    <TableColumn fx:id="colAmount"-->
+<!--                                 text="Amount"-->
+<!--                                 prefWidth="90"/>-->
 
-                    <TableColumn fx:id="colAction"
-                                 text="Action"
-                                 prefWidth="120"/>
+<!--                    <TableColumn fx:id="colAction"-->
+<!--                                 text="Action"-->
+<!--                                 prefWidth="120"/>-->
 
-                </columns>
+<!--                </columns>-->
 
-            </TableView>
+<!--            </TableView>-->
 
-        </VBox>
+<!--        </VBox>-->
 
-    </children>
+<!--    </children>-->
 
-</AnchorPane>
+<!--</AnchorPane>-->
