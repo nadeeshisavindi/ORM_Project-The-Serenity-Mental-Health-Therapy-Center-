@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="580.0" prefWidth="900.0"
+            style="-fx-background-color: #f8f7ff;"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.orm_project.controller.LoginController">
+    <children>
+
+        <VBox alignment="CENTER" prefHeight="580.0" prefWidth="405.0"
+              spacing="20.0" style="-fx-background-color:#1a1a2e; -fx-padding:40;">
+            <children>
+                <ImageView fitHeight="166.0" fitWidth="200.0">
+                    <image>
+                        <Image url="@../image/Screenshot__171_-removebg-preview.png"/>
+                    </image>
+                </ImageView>
+                <Label style="-fx-text-fill:white; -fx-font-size:28; -fx-font-weight:bold;"
+                       text="Serenity Wellness Clinic"/>
+                <Label style="-fx-text-fill:#534ab7; -fx-font-size:13;"
+                       text="Mental Therapy Center"/>
+                <Region prefHeight="2.0" prefWidth="40.0" style="-fx-background-color:#7f77dd;"/>
+                <Label maxWidth="260" style="-fx-text-fill:#b4b2a9; -fx-font-size:12;"
+                       text="Secure role-based access for admins and therapists" wrapText="true"/>
+                <Label maxWidth="260" style="-fx-text-fill:#b4b2a9; -fx-font-size:12;"
+                       text="Manage patients, sessions and programs" wrapText="true"/>
+                <Label maxWidth="260" style="-fx-text-fill:#b4b2a9; -fx-font-size:12;"
+                       text="Real-time dashboard analytics" wrapText="true"/>
+            </children>
+        </VBox>
+
+        <VBox alignment="CENTER" layoutX="405.0" prefHeight="580.0" prefWidth="495.0"
+              style="-fx-background-color:#f8f7ff; -fx-padding:40;">
+            <children>
+                <VBox spacing="15"
+                      style="-fx-background-color:white;
+                             -fx-padding:36;
+                             -fx-background-radius:16;
+                             -fx-border-color:#e8e6f8;
+                             -fx-border-radius:16;">
+                    <children>
+
+                        <HBox alignment="CENTER">
+                            <Label style="-fx-font-size:20; -fx-font-weight:bold; -fx-text-fill:#26215c;"
+                                   text="Welcome"/>
+                        </HBox>
+
+                        <Region prefHeight="10"/>
+
+                        <Label style="-fx-font-size:11; -fx-text-fill:#534ab7; -fx-font-weight:bold;"
+                               text="USERNAME"/>
+                        <HBox alignment="CENTER_LEFT" spacing="10"
+                              style="-fx-background-color:#f8f7ff; -fx-border-color:#e8e6f8;
+                                     -fx-background-radius:8; -fx-border-radius:8; -fx-padding:8;">
+                            <Label text="👤"/>
+                            <TextField fx:id="txtUsername" promptText="Enter username" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+
+                        <Region prefHeight="10"/>
+
+                        <Label style="-fx-font-size:11; -fx-text-fill:#534ab7; -fx-font-weight:bold;"
+                               text="PASSWORD"/>
+                        <HBox alignment="CENTER_LEFT" spacing="10"
+                              style="-fx-background-color:#f8f7ff; -fx-border-color:#e8e6f8;
+                                     -fx-background-radius:8; -fx-border-radius:8; -fx-padding:8;">
+                            <Label text="🔒"/>
+                            <PasswordField fx:id="txtPassword" promptText="Enter password" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+
+                        <Region prefHeight="10"/>
+
+                        <Label style="-fx-font-size:11; -fx-text-fill:#534ab7; -fx-font-weight:bold;"
+                               text="ROLE"/>
+                        <HBox spacing="20">
+                            <RadioButton fx:id="rbAdmin" text="Admin" selected="true">
+                                <toggleGroup>
+                                    <ToggleGroup fx:id="roleGroup"/>
+                                </toggleGroup>
+                            </RadioButton>
+                            <RadioButton fx:id="rbTherapist" text="Therapist" toggleGroup="$roleGroup"/>
+                        </HBox>
+
+                        <Region prefHeight="10"/>
+
+                        <Button fx:id="btnLogin" maxWidth="Infinity" onAction="#handleLogin"
+                                style="-fx-background-color:#7f77dd; -fx-text-fill:white;
+                                       -fx-font-weight:bold; -fx-background-radius:10;
+                                       -fx-cursor:hand; -fx-padding:10;"
+                                text="Login"/>
+
+                        <Label fx:id="lblError" style="-fx-text-fill:red; -fx-font-size:11;" text=""/>
+
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+
+    </children>
+</AnchorPane>

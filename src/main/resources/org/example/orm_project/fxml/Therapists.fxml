@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600" prefWidth="1000"
+            style="-fx-background-color:#16213e;"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.orm_project.controller.TherapistController">
+
+    <children>
+
+        <!-- LEFT FORM PANEL -->
+        <VBox layoutX="25" layoutY="20" prefWidth="350" spacing="12"
+              style="-fx-background-color:white;
+                     -fx-padding:20;
+                     -fx-background-radius:12;
+                     -fx-border-color:#e8e6f8;
+                     -fx-border-radius:12;">
+
+            <Label text="Therapist Management"
+                   style="-fx-font-size:18; -fx-font-weight:bold; -fx-text-fill:#26215c;"/>
+
+            <Label fx:id="lblMessage" text=""/>
+
+            <Label text="ID"/>
+            <TextField fx:id="txtId" editable="false"/>
+
+            <Label text="Name"/>
+            <TextField fx:id="txtName" promptText="Enter name"/>
+
+            <Label text="Specialization"/>
+            <ComboBox fx:id="cmbSpecialization" prefWidth="300"/>
+
+            <Label text="Phone"/>
+            <TextField fx:id="txtPhone" promptText="Enter phone"/>
+
+            <Label text="Email"/>
+            <TextField fx:id="txtEmail" promptText="Enter email"/>
+
+            <Label text="Availability"/>
+            <ComboBox fx:id="cmbAvailability" prefWidth="300"/>
+
+            <!-- ACTION BUTTONS -->
+            <HBox spacing="8">
+
+                <Button fx:id="btnSave"
+                        text="Save"
+                        onAction="#handleSave"
+                        style="-fx-background-color:#7f77dd; -fx-text-fill:white;"/>
+
+                <Button text="Delete"
+                        onAction="#handleDelete"
+                        style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+
+                <Button text="Reset"
+                        onAction="#handleClear"
+                        style="-fx-background-color:#888; -fx-text-fill:white;"/>
+
+            </HBox>
+
+            <!-- REPORT BUTTON -->
+            <Button text="Report View"
+                    onAction="#handleReportView"
+                    prefWidth="300"
+                    style="-fx-background-color:#1d9e75;
+                           -fx-text-fill:white;
+                           -fx-font-weight:bold;
+                           -fx-background-radius:8;
+                           -fx-cursor:hand;"/>
+
+        </VBox>
+
+        <!-- RIGHT TABLE PANEL -->
+        <VBox layoutX="400" layoutY="20" prefWidth="580" spacing="10"
+              style="-fx-background-color:white;
+                     -fx-padding:20;
+                     -fx-background-radius:12;
+                     -fx-border-color:#e8e6f8;
+                     -fx-border-radius:12;">
+
+            <Label text="Therapist List"
+                   style="-fx-font-size:16; -fx-font-weight:bold;"/>
+
+            <TextField fx:id="txtSearch"
+                       promptText="Search therapist..."
+                       style="-fx-background-radius:8;"/>
+
+            <TableView fx:id="tblTherapist" prefHeight="450">
+                <columns>
+                    <TableColumn fx:id="colId"             text="ID"             prefWidth="80"/>
+                    <TableColumn fx:id="colName"           text="Name"           prefWidth="120"/>
+                    <TableColumn fx:id="colSpecialization" text="Specialization" prefWidth="140"/>
+                    <TableColumn fx:id="colPhone"          text="Phone"          prefWidth="100"/>
+                    <TableColumn fx:id="colEmail"          text="Email"          prefWidth="130"/>
+                    <TableColumn fx:id="colAction"         text="Action"         prefWidth="100"/>
+                </columns>
+            </TableView>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>
