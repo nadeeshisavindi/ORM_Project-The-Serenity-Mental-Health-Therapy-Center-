@@ -9,12 +9,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import org.example.orm_project.bo.BOFactory;
-import  org.example.orm_project.bo.BOTypes;
-import  org.example.orm_project.bo.custom.TherapistBO;
-import  org.example.orm_project.dto.tm.TherapistTM;
+import org.example.orm_project.bo.BOTypes;
+import org.example.orm_project.bo.custom.TherapistBO;
+import org.example.orm_project.dto.tm.TherapistTM;
 import org.example.orm_project.entity.Therapist;
 import org.example.orm_project.util.JasperReportUtil;
-import javafx.event.ActionEvent;
 
 import java.net.URL;
 import java.util.List;
@@ -80,15 +79,13 @@ public class TherapistController implements Initializable {
     }
 
     private void setupTable() {
-
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colSpecialization.setCellValueFactory(new PropertyValueFactory<>("specialization"));
-        colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        colSpecialization.setCellValueFactory(new PropertyValueFactory<>("specialization"));
 
         colAction.setCellFactory(col -> new TableCell<>() {
-
             private final Button editBtn = new Button("Edit");
             private final Button delBtn = new Button("Delete");
             private final HBox box = new HBox(6, editBtn, delBtn);
@@ -126,20 +123,19 @@ public class TherapistController implements Initializable {
 
     private void loadData() {
         masterList.clear();
-
         try {
             List<Therapist> list = therapistBO.getAllTherapists();
 
             for (Therapist t : list) {
+                // Constructor එකේ පිළිවෙළටම data පාස් කර ඇත (id, name, email, phone, specialization)
                 masterList.add(new TherapistTM(
                         t.getId(),
                         t.getName(),
-                        t.getSpecialization(),
+                        t.getEmail(),
                         t.getPhone(),
-                        t.getEmail()
+                        t.getSpecialization()
                 ));
             }
-
         } catch (Exception e) {
             showError(e.getMessage());
         }
@@ -148,7 +144,6 @@ public class TherapistController implements Initializable {
     // SAVE / UPDATE
     @FXML
     private void handleSave() {
-
         if (!validate()) return;
 
         try {
@@ -168,7 +163,6 @@ public class TherapistController implements Initializable {
                 loadData();
                 clearForm();
             }
-
         } catch (Exception e) {
             showError(e.getMessage());
         }
@@ -183,12 +177,10 @@ public class TherapistController implements Initializable {
             showError("Select a row first");
             return;
         }
-
         deleteRow(selected);
     }
 
     private void populateForm(TherapistTM t) {
-
         isEditMode = true;
 
         txtId.setText(t.getId());
@@ -215,7 +207,6 @@ public class TherapistController implements Initializable {
         JasperReportUtil.showTherapistReport();
     }
 
-
     @FXML
     private void handleClear() {
         clearForm();
@@ -234,10 +225,7 @@ public class TherapistController implements Initializable {
         generateId();
     }
 
-
-
     private boolean validate() {
-
         if (!txtName.getText().matches(NAME_REGEX)) return error("Invalid name");
         if (cmbSpecialization.getValue() == null) return error("Select specialization");
         if (!txtPhone.getText().matches(PHONE_REGEX)) return error("Invalid phone");
