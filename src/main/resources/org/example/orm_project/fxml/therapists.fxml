@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600" prefWidth="1000"
+<AnchorPane prefHeight="1080" prefWidth="1600"
             style="-fx-background-color:#16213e;"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"

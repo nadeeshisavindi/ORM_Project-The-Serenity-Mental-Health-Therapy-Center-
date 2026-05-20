@@ -20,81 +20,81 @@
         <VBox layoutX="-3.0" prefHeight="660.0" prefWidth="275.0" style="-fx-background-color: #16213e; -fx-padding: 20 14 20 14;">
 
             <children>
-            <VBox prefHeight="145.0" prefWidth="247.0">
-               <children>
-                  <VBox prefHeight="45.0" prefWidth="247.0">
-                     <children>
-                        <Label prefHeight="50.0" prefWidth="247.0" text="Serenity Wellness " textFill="WHITE">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
+                <VBox prefHeight="145.0" prefWidth="247.0">
+                    <children>
+                        <VBox prefHeight="45.0" prefWidth="247.0">
+                            <children>
+                                <Label prefHeight="50.0" prefWidth="247.0" text="Serenity Wellness " textFill="WHITE">
+                                    <font>
+                                        <Font size="30.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <Label prefHeight="45.0" prefWidth="212.0" text="Clinic...." textFill="WHITE">
+                            <font>
+                                <Font size="36.0" />
+                            </font>
                         </Label>
-                     </children>
-                  </VBox>
-                  <Label prefHeight="45.0" prefWidth="212.0" text="Clinic...." textFill="WHITE">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                          <Label style="-fx-text-fill: #534ab7; -fx-font-size: 10;" text="Mental Therapy Center" />
-      
-                                  <Separator prefHeight="7.0" prefWidth="247.0" />
-               </children>
-            </VBox>
-            <VBox prefHeight="84.0" prefWidth="247.0">
-               <children>
-      
-                            <Label style="-fx-text-fill: #534ab7; -fx-font-size: 10; -fx-font-weight: bold;" text="OVERVIEW" />
-      
-                      <Button maxWidth="Infinity" onAction="#navigateToDashboard" style="-fx-background-color: rgba(127,119,221,0.18);                                -fx-text-fill: #afa9ec;" text="⊞   Dashboard" />
-               </children>
-            </VBox>
-            <VBox prefHeight="223.0" prefWidth="247.0">
-               <children>
-      
-                            <Label style="-fx-text-fill: #534ab7; -fx-font-size: 10; -fx-font-weight: bold;" text="MANAGEMENT" />
-      
-                      <Button maxWidth="Infinity" onAction="#navigateToPatient" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="👤   Patients">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
-      
-                      <Button maxWidth="Infinity" onAction="#navigateToTherapists" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="🩺   Therapists">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
-      
-                      <Button maxWidth="Infinity" onAction="#navigateToSessions" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="📅   Sessions">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
-      
-                      <Button maxWidth="Infinity" onAction="#navigateToPrograms" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="📋   Programs">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
-      
-                      <Button maxWidth="Infinity" onAction="#navigateToPayment" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="💳   Payments">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
+                        <Label style="-fx-text-fill: #534ab7; -fx-font-size: 10;" text="Mental Therapy Center" />
+
+                        <Separator prefHeight="7.0" prefWidth="247.0" />
+                    </children>
+                </VBox>
+                <VBox prefHeight="84.0" prefWidth="247.0">
+                    <children>
+
+                        <Label style="-fx-text-fill: #534ab7; -fx-font-size: 10; -fx-font-weight: bold;" text="OVERVIEW" />
+
+                        <Button maxWidth="Infinity" onAction="#navigateToDashboard" style="-fx-background-color: rgba(127,119,221,0.18);                                -fx-text-fill: #afa9ec;" text="⊞   Dashboard" />
+                    </children>
+                </VBox>
+                <VBox prefHeight="223.0" prefWidth="247.0">
+                    <children>
+
+                        <Label style="-fx-text-fill: #534ab7; -fx-font-size: 10; -fx-font-weight: bold;" text="MANAGEMENT" />
+
+                        <Button maxWidth="Infinity" onAction="#navigateToPatient" prefHeight="25.0" prefWidth="247.0" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="👤   Patients">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Button>
+
+                        <Button maxWidth="Infinity" onAction="#navigateToTherapists" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="🩺   Therapists">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Button>
+
+                        <Button maxWidth="Infinity" onAction="#navigateToSessions" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="📅   Sessions">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Button>
+
+                        <Button maxWidth="Infinity" onAction="#navigateToPrograms" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="📋   Programs">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Button>
+
+                        <Button maxWidth="Infinity" onAction="#navigateToPayment" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="💳   Payments">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
 
                 <Label style="-fx-text-fill: #534ab7; -fx-font-size: 10; -fx-font-weight: bold;" text="SYSTEM" />
 
-                <Button maxWidth="Infinity" onAction="#navigateToUser" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="Log out" />
+                <Button maxWidth="Infinity" onAction="#logout" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="Log out" />
 
                 <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="247.0" spacing="10">
                     <children>
                         <VBox spacing="2">
                             <children>
-                        <VBox prefHeight="255.0" prefWidth="247.0" />
+                                <VBox prefHeight="255.0" prefWidth="247.0" />
                             </children>
                         </VBox>
                     </children>
@@ -107,76 +107,75 @@
         <VBox fx:id="mainContent" layoutX="272.0" prefHeight="660.0" prefWidth="828.0">
 
             <children>
-            <AnchorPane prefHeight="715.0" prefWidth="933.0" style="-fx-background-color: #16213e;">
-               <children>
-      
-                      <ScrollPane fitToWidth="true" layoutX="14.0" layoutY="20.0" prefHeight="617.0" prefWidth="828.0" style="-fx-background-color: transparent; -fx-border-color: transparent;">
-                     <content>
-                  
-                                                <VBox prefHeight="613.0" prefWidth="794.0" spacing="14" style="-fx-padding: 20;">
-                  
+                <AnchorPane prefHeight="715.0" prefWidth="933.0" style="-fx-background-color: #16213e;">
+                    <children>
+
+
+
+                                <VBox prefHeight="613.0" prefWidth="794.0" spacing="14" style="-fx-padding: 20;">
+
+                                    <children>
+
+                                        <!-- HEADER -->
+                                        <VBox prefHeight="90.0" prefWidth="768.0" spacing="2">
+                                            <children>
+                                                <Label fx:id="dateLabel" style="-fx-font-size: 11; -fx-text-fill: #888780;" text="Tuesday, May 19, 2026" />
+                                                <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #26215c;" text="Good morning, Amin">
+                                                    <font>
+                                                        <Font size="38.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- STATS -->
+                                        <HBox spacing="12">
+
+                                            <children>
+
+                                                <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16;                                                      -fx-background-radius: 12; -fx-border-color: #e8e6f8;" HBox.hgrow="ALWAYS">
                                                     <children>
-                  
-                                                        <!-- HEADER -->
-                                      <VBox prefHeight="90.0" prefWidth="768.0" spacing="2">
-                                          <children>
-                                              <Label fx:id="dateLabel" style="-fx-font-size: 11; -fx-text-fill: #888780;" text="Tuesday, May 19, 2026" />
-                                              <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #26215c;" text="Good morning, Amin">
-                                       <font>
-                                          <Font size="38.0" />
-                                       </font>
-                                    </Label>
-                                          </children>
-                                      </VBox>
-                  
-                                                        <!-- STATS -->
-                                      <HBox spacing="12">
-                  
-                                                            <children>
-                  
-                                                                <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16;                                                      -fx-background-radius: 12; -fx-border-color: #e8e6f8;" HBox.hgrow="ALWAYS">
-                                                  <children>
-                                                      <Label text="Total Patients" />
-                                                      <Label fx:id="totalPatients" style="-fx-font-size: 28; -fx-font-weight: bold;" text="0" />
-                                                  </children>
-                                              </VBox>
-                  
-                                                                <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16;                                                      -fx-background-radius: 12; -fx-border-color: #e8e6f8;" HBox.hgrow="ALWAYS">
-                                                  <children>
-                                                      <Label text="Therapists" />
-                                                      <Label fx:id="totalTherapists" style="-fx-font-size: 28; -fx-font-weight: bold;" text="0" />
-                                                  </children>
-                                              </VBox>
-                  
-                                                                <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16;                                                      -fx-background-radius: 12; -fx-border-color: #e8e6f8;" HBox.hgrow="ALWAYS">
-                                                  <children>
-                                                      <Label text="Sessions Today" />
-                                                      <Label fx:id="sessionsToday" style="-fx-font-size: 28; -fx-font-weight: bold;" text="0" />
-                                                  </children>
-                                              </VBox>
-                  
-                                                            </children>
-                                      </HBox>
-                  
-                                                                    <!-- TABLE -->
-                                      <TableView fx:id="recentSessionsTable" prefHeight="472.0" prefWidth="623.0">
-                                          <columns>
-                                              <TableColumn fx:id="colSessionId" prefWidth="96.0" text="Session ID" />
-                                              <TableColumn fx:id="colPatient" prefWidth="147.0" text="Patient" />
-                                              <TableColumn fx:id="colTherapist" prefWidth="157.0" text="Therapist" />
-                                              <TableColumn fx:id="colDate" prefWidth="158.0" text="Date" />
-                                              <TableColumn fx:id="colStatus" prefWidth="225.0" text="Status" />
-                                          </columns>
-                                      </TableView>
-                  
+                                                        <Label text="Total Patients" />
+                                                        <Label fx:id="totalPatients" style="-fx-font-size: 28; -fx-font-weight: bold;" text="0" />
                                                     </children>
-                  
                                                 </VBox>
-                     </content>
-      
-                      </ScrollPane>
-               </children>
-            </AnchorPane>
+
+                                                <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16;                                                      -fx-background-radius: 12; -fx-border-color: #e8e6f8;" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="Therapists" />
+                                                        <Label fx:id="totalTherapists" style="-fx-font-size: 28; -fx-font-weight: bold;" text="0" />
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 16;                                                      -fx-background-radius: 12; -fx-border-color: #e8e6f8;" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="Sessions Today" />
+                                                        <Label fx:id="sessionsToday" style="-fx-font-size: 28; -fx-font-weight: bold;" text="0" />
+                                                    </children>
+                                                </VBox>
+
+                                            </children>
+                                        </HBox>
+
+                                        <!-- TABLE -->
+                                        <TableView fx:id="recentSessionsTable" prefHeight="472.0" prefWidth="623.0">
+                                            <columns>
+                                                <TableColumn fx:id="colSessionId" prefWidth="96.0" text="Session ID" />
+                                                <TableColumn fx:id="colPatient" prefWidth="147.0" text="Patient" />
+                                                <TableColumn fx:id="colTherapist" prefWidth="157.0" text="Therapist" />
+                                                <TableColumn fx:id="colDate" prefWidth="158.0" text="Date" />
+                                                <TableColumn fx:id="colStatus" prefWidth="225.0" text="Status" />
+                                            </columns>
+                                        </TableView>
+
+                                    </children>
+
+                                </VBox>
+
+
+
+                    </children>
+                </AnchorPane>
 
             </children>
 

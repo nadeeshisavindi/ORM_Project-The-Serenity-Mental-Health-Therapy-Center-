@@ -18,10 +18,8 @@ public class DashboardController {
 
     @FXML
     void navigateToDashboard(ActionEvent event) {
-
-        mainContent.getChildren().clear();
+        loadPage("dashbord2.fxml");
     }
-
 
     @FXML
     void navigateToPatient(ActionEvent event) {
@@ -49,15 +47,17 @@ public class DashboardController {
     }
 
     @FXML
-    void navigateToUser(ActionEvent event) {
-        loadPage("user.fxml");
-    }
-
-    @FXML
     void logout(ActionEvent event) {
-        System.out.println("Logout clicked");
-    }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/orm_project/fxml/login.fxml"));
+            AnchorPane root = loader.load();
 
+            contentPane.getScene().setRoot(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void loadPage(String fileName) {
         try {
             String fullPath = "/org/example/orm_project/fxml/" + fileName;
