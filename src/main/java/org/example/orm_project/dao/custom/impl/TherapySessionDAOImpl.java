@@ -1,7 +1,7 @@
 package org.example.orm_project.dao.custom.impl;
 
 import org.example.orm_project.dao.custom.TherapySessionDAO;
-import org.example.orm_project.db.FactoryConfiguration;
+import org.example.orm_project.config.FactoryConfiguration;
 import org.example.orm_project.entity.TherapySession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

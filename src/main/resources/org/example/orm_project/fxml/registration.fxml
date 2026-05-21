@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane
+        prefHeight="650" prefWidth="1050"
+        style="-fx-background-color:#16213e;"
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.example.orm_project.controller.RegistrationController">
+
+    <children>
+
+        <!-- ═══════════════ LEFT FORM PANEL ═══════════════ -->
+        <VBox
+                layoutX="25" layoutY="25"
+                prefWidth="360" spacing="10"
+                style="-fx-background-color:white;
+                       -fx-padding:24;
+                       -fx-background-radius:14;
+                       -fx-border-color:#e8e6f8;
+                       -fx-border-radius:14;
+                       -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.12),12,0,0,4);">
+
+            <!-- Title -->
+            <Label text="Registration Management"
+                   style="-fx-font-size:17px;-fx-font-weight:bold;
+                          -fx-text-fill:#26215c;-fx-padding:0 0 6 0;"/>
+
+            <!-- Message Label -->
+            <Label fx:id="lblMessage" text=""
+                   wrapText="true" prefWidth="312"
+                   style="-fx-font-size:13px;-fx-font-weight:bold;"/>
+
+            <!-- ID -->
+            <Label text="Registration ID"
+                   style="-fx-font-size:12px;-fx-text-fill:#555;-fx-font-weight:bold;"/>
+            <TextField fx:id="txtId" editable="false"
+                       style="-fx-background-color:#f4f3fc;-fx-background-radius:8;
+                              -fx-border-color:#d5d2f0;-fx-border-radius:8;
+                              -fx-padding:8 12;-fx-font-size:13px;"/>
+
+            <!-- Patient -->
+            <Label text="Patient"
+                   style="-fx-font-size:12px;-fx-text-fill:#555;-fx-font-weight:bold;"/>
+            <ComboBox fx:id="cmbPatient" prefWidth="312"
+                      style="-fx-background-radius:8;-fx-border-color:#d5d2f0;
+                             -fx-border-radius:8;-fx-font-size:13px;"/>
+
+            <!-- Program -->
+            <Label text="Therapy Program"
+                   style="-fx-font-size:12px;-fx-text-fill:#555;-fx-font-weight:bold;"/>
+            <ComboBox fx:id="cmbProgram" prefWidth="312"
+                      style="-fx-background-radius:8;-fx-border-color:#d5d2f0;
+                             -fx-border-radius:8;-fx-font-size:13px;"/>
+
+            <!-- Registration Date -->
+            <Label text="Registration Date"
+                   style="-fx-font-size:12px;-fx-text-fill:#555;-fx-font-weight:bold;"/>
+            <DatePicker fx:id="dpRegistrationDate" prefWidth="312"
+                        style="-fx-background-radius:8;-fx-border-color:#d5d2f0;
+                               -fx-border-radius:8;-fx-font-size:13px;"/>
+
+            <!-- Amount Paid -->
+            <Label text="Amount Paid (LKR)"
+                   style="-fx-font-size:12px;-fx-text-fill:#555;-fx-font-weight:bold;"/>
+            <TextField fx:id="txtAmountPaid"
+                       promptText="Enter amount"
+                       style="-fx-background-radius:8;-fx-border-color:#d5d2f0;
+                              -fx-border-radius:8;-fx-padding:8 12;-fx-font-size:13px;"/>
+
+            <!-- Buttons Row -->
+            <HBox spacing="8" style="-fx-padding:6 0 0 0;">
+                <Button fx:id="btnSave"
+                        text="Save"
+                        onAction="#handleSave"
+                        prefWidth="96" prefHeight="36"
+                        style="-fx-background-color:#7f77dd;-fx-text-fill:white;
+                               -fx-font-weight:bold;-fx-font-size:13px;
+                               -fx-background-radius:8;-fx-cursor:hand;"/>
+                <Button text="Clear"
+                        onAction="#handleClear"
+                        prefWidth="96" prefHeight="36"
+                        style="-fx-background-color:#888;-fx-text-fill:white;
+                               -fx-font-weight:bold;-fx-font-size:13px;
+                               -fx-background-radius:8;-fx-cursor:hand;"/>
+            </HBox>
+
+        </VBox>
+
+        <!-- ═══════════════ RIGHT TABLE PANEL ═══════════════ -->
+        <VBox
+                layoutX="410" layoutY="25"
+                prefWidth="615" spacing="10"
+                style="-fx-background-color:white;
+                       -fx-padding:24;
+                       -fx-background-radius:14;
+                       -fx-border-color:#e8e6f8;
+                       -fx-border-radius:14;
+                       -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.12),12,0,0,4);">
+
+            <!-- Table Title -->
+            <Label text="Registration List"
+                   style="-fx-font-size:16px;-fx-font-weight:bold;-fx-text-fill:#26215c;"/>
+
+            <!-- Search -->
+            <TextField fx:id="txtSearch"
+                       promptText="🔍  Search by ID, patient or program..."
+                       style="-fx-background-radius:8;-fx-border-color:#d5d2f0;
+                              -fx-border-radius:8;-fx-padding:8 12;-fx-font-size:13px;"/>
+
+            <!-- Table -->
+            <TableView fx:id="tblRegistration"
+                       prefHeight="530"
+                       style="-fx-background-radius:10;-fx-border-color:#e8e6f8;
+                              -fx-border-radius:10;">
+                <columns>
+                    <TableColumn fx:id="colId"
+                                 text="ID"
+                                 prefWidth="75"/>
+                    <TableColumn fx:id="colPatient"
+                                 text="Patient"
+                                 prefWidth="130"/>
+                    <TableColumn fx:id="colProgram"
+                                 text="Program"
+                                 prefWidth="130"/>
+                    <TableColumn fx:id="colDate"
+                                 text="Date"
+                                 prefWidth="100"/>
+                    <TableColumn fx:id="colAmount"
+                                 text="Amount (LKR)"
+                                 prefWidth="110"/>
+                    <TableColumn fx:id="colAction"
+                                 text="Actions"
+                                 prefWidth="140"/>
+                </columns>
+            </TableView>
+
+        </VBox>
+
+    </children>
+</AnchorPane>

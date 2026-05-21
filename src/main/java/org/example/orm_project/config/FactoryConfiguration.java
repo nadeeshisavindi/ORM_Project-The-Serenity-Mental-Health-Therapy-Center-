@@ -1,4 +1,4 @@
-package org.example.orm_project.db;
+package org.example.orm_project.config;
 
 import org.example.orm_project.entity.*;
 import org.hibernate.Session;

@@ -2,7 +2,7 @@ package org.example.orm_project.dao.custom.impl;
 
 import org.example.orm_project.dao.custom.RegistrationDAO;
 import org.example.orm_project.entity.Registration;
-import org.example.orm_project.db.FactoryConfiguration;
+import org.example.orm_project.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

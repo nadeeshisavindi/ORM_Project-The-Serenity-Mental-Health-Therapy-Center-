@@ -2,221 +2,254 @@ package org.example.orm_project.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
 import org.example.orm_project.bo.BOFactory;
 import org.example.orm_project.bo.BOTypes;
 import org.example.orm_project.bo.custom.PaymentBO;
 import org.example.orm_project.bo.custom.RegistrationBO;
+import org.example.orm_project.dto.tm.PaymentTM;
 import org.example.orm_project.entity.Payment;
 import org.example.orm_project.entity.Registration;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PaymentController implements Initializable {
 
+    @FXML private Label lblMessage;
     @FXML private TextField txtId;
     @FXML private ComboBox<String> cmbRegistration;
     @FXML private DatePicker dpPaymentDate;
     @FXML private TextField txtAmount;
     @FXML private ComboBox<String> cmbStatus;
-    @FXML private Label lblMessage;
     @FXML private Button btnSave;
     @FXML private TextField txtSearch;
 
-    @FXML private TableView<Payment> tblPayment;
-    @FXML private TableColumn<Payment, String>    colId;
-    @FXML private TableColumn<Payment, String>    colRegistration;
-    @FXML private TableColumn<Payment, LocalDate> colDate;
-    @FXML private TableColumn<Payment, Double>    colAmount;
-    @FXML private TableColumn<Payment, String>    colStatus;
-    @FXML private TableColumn<Payment, Void>      colAction;
+    @FXML private TableView<PaymentTM> tblPayment;
+    @FXML private TableColumn<PaymentTM, String> colId;
+    @FXML private TableColumn<PaymentTM, String> colRegistration;
+    @FXML private TableColumn<PaymentTM, LocalDate> colDate;
+    @FXML private TableColumn<PaymentTM, Double> colAmount;
+    @FXML private TableColumn<PaymentTM, String> colStatus;
+    @FXML private TableColumn<PaymentTM, Button> colAction;
 
     private final PaymentBO paymentBO =
             (PaymentBO) BOFactory.getInstance().getBO(BOTypes.PAYMENT);
     private final RegistrationBO registrationBO =
             (RegistrationBO) BOFactory.getInstance().getBO(BOTypes.REGISTRATION);
 
-    private final ObservableList<Payment> masterList = FXCollections.observableArrayList();
-    private boolean isEditMode = false;
+    private final ObservableList<PaymentTM> paymentList = FXCollections.observableArrayList();
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        cmbStatus.getItems().addAll("PAID", "PENDING");
-        setupTable();
-        setupSearch();
-        loadRegistrationCombo();
-        loadTableData();
-        generateNextId();
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setupColumns();
+        loadRegistrations();
+        cmbStatus.setItems(FXCollections.observableArrayList("PAID", "PENDING"));
         dpPaymentDate.setValue(LocalDate.now());
+        loadNextId();
+        loadPayments();
+        setupSearch();
+        setupTableRowClick();
     }
 
-    private void generateNextId() {
-        try { txtId.setText(paymentBO.generateNextPaymentId()); }
-        catch (Exception e) { e.printStackTrace(); }
-    }
+    // ── Column bindings ──────────────────────────────────────────────────────
 
-    private void loadRegistrationCombo() {
-        try {
-            cmbRegistration.getItems().clear();
-            for (Registration r : registrationBO.getAllRegistrations()) {
-                String patientName = r.getPatient() != null ? r.getPatient().getName() : "";
-                cmbRegistration.getItems().add(r.getId() + " - " + patientName);
-            }
-        } catch (Exception e) { e.printStackTrace(); }
-    }
-
-    private void setupTable() {
+    private void setupColumns() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colRegistration.setCellValueFactory(new PropertyValueFactory<>("registrationId"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("paymentDate"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-
-        colRegistration.setCellFactory(col -> new TableCell<>() {
-            @Override protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || getTableRow().getItem() == null) { setText(null); return; }
-                Payment p = (Payment) getTableRow().getItem();
-                setText(p.getRegistration() != null ? p.getRegistration().getId() : "");
-            }
-        });
-
-        colAction.setCellFactory(col -> new TableCell<>() {
-            private final Button btnEdit   = new Button("Edit");
-            private final Button btnDelete = new Button("Delete");
-            private final HBox box = new HBox(6, btnEdit, btnDelete);
-            {
-                btnEdit.setStyle("-fx-background-color:#2B3990;-fx-text-fill:white;-fx-background-radius:5;-fx-padding:4 10;-fx-cursor:hand;-fx-font-size:11px;");
-                btnDelete.setStyle("-fx-background-color:#e74c3c;-fx-text-fill:white;-fx-background-radius:5;-fx-padding:4 10;-fx-cursor:hand;-fx-font-size:11px;");
-                btnEdit.setOnAction(e   -> populateForm(getTableView().getItems().get(getIndex())));
-                btnDelete.setOnAction(e -> handleDelete(getTableView().getItems().get(getIndex())));
-            }
-            @Override protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : box);
-            }
-        });
+        colAction.setCellValueFactory(new PropertyValueFactory<>("actionButton"));
+        tblPayment.setItems(paymentList);
     }
 
-    private void setupSearch() {
-        FilteredList<Payment> filtered = new FilteredList<>(masterList, p -> true);
-        txtSearch.textProperty().addListener((obs, o, val) -> filtered.setPredicate(row -> {
-            if (val == null || val.isEmpty()) return true;
-            String lower = val.toLowerCase();
-            boolean matchId = row.getId().toLowerCase().contains(lower);
-            boolean matchStatus = row.getStatus() != null && row.getStatus().toLowerCase().contains(lower);
-            boolean matchReg = row.getRegistration() != null && row.getRegistration().getId().toLowerCase().contains(lower);
-            return matchId || matchStatus || matchReg;
-        }));
-        tblPayment.setItems(filtered);
-    }
+    // ── Load helpers ─────────────────────────────────────────────────────────
 
-    private void loadTableData() {
-        masterList.clear();
-        try { masterList.addAll(paymentBO.getAllPayments()); }
-        catch (Exception e) { showError("Failed to load: " + e.getMessage()); }
-    }
-
-    @FXML
-    private void handleReportView() {
-        JasperReportUtil.showPaymentReport();
-    }
-
-    @FXML
-    private void handleSave() {
-        hideMessage();
-        if (!validateInputs()) return;
+    private void loadNextId() {
         try {
-            String regId = cmbRegistration.getValue().split(" - ")[0];
-            Registration reg = registrationBO.searchRegistration(regId);
-
-            Payment payment = new Payment();
-            payment.setId(txtId.getText().trim());
-            payment.setPaymentDate(dpPaymentDate.getValue());
-            payment.setAmount(Double.parseDouble(txtAmount.getText().trim()));
-            payment.setStatus(cmbStatus.getValue());
-            payment.setRegistration(reg);
-
-            boolean result = isEditMode
-                    ? paymentBO.updatePayment(payment)
-                    : paymentBO.savePayment(payment);
-
-            if (result) {
-                showSuccess(isEditMode ? "Payment updated!" : "Payment saved!");
-                loadTableData();
-                handleClear();
-            }
+            txtId.setText(paymentBO.generateNextPaymentId());
         } catch (Exception e) {
-            showError("Error: " + e.getMessage());
-            e.printStackTrace();
+            showMessage("ID load failed: " + e.getMessage(), true);
         }
     }
 
-    private void populateForm(Payment row) {
-        isEditMode = true;
-        txtId.setText(row.getId());
-        dpPaymentDate.setValue(row.getPaymentDate());
-        txtAmount.setText(String.valueOf(row.getAmount()));
-        cmbStatus.setValue(row.getStatus());
-        if (row.getRegistration() != null)
-            cmbRegistration.getItems().stream()
-                    .filter(s -> s.startsWith(row.getRegistration().getId()))
-                    .findFirst().ifPresent(cmbRegistration::setValue);
-        btnSave.setText("Update");
+    private void loadRegistrations() {
+        try {
+            List<Registration> list = registrationBO.getAllRegistrations();
+            ObservableList<String> ids = FXCollections.observableArrayList();
+            list.forEach(r -> ids.add(r.getId()));
+            cmbRegistration.setItems(ids);
+        } catch (Exception e) {
+            showMessage("Registration load failed: " + e.getMessage(), true);
+        }
     }
 
-    private void handleDelete(Payment row) {
+    private void loadPayments() {
+        try {
+            paymentList.clear();
+            List<Payment> list = paymentBO.getAllPayments();
+            for (Payment p : list) {
+                Button deleteBtn = new Button("Delete");
+                deleteBtn.setStyle("-fx-background-color:#e74c3c;-fx-text-fill:white;"
+                        + "-fx-background-radius:6;-fx-cursor:hand;");
+                String payId = p.getId();
+                deleteBtn.setOnAction(e -> handleDelete(payId));
+
+                paymentList.add(new PaymentTM(
+                        p.getId(),
+                        p.getRegistration().getId(),
+                        p.getPaymentDate(),
+                        p.getAmount(),
+                        p.getStatus(),
+                        deleteBtn
+                ));
+            }
+        } catch (Exception e) {
+            showMessage("Load failed: " + e.getMessage(), true);
+        }
+    }
+
+    // ── Search ────────────────────────────────────────────────────────────────
+
+    private void setupSearch() {
+        txtSearch.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal == null || newVal.isBlank()) {
+                tblPayment.setItems(paymentList);
+                return;
+            }
+            String lower = newVal.toLowerCase();
+            ObservableList<PaymentTM> filtered = FXCollections.observableArrayList();
+            for (PaymentTM tm : paymentList) {
+                if (tm.getId().toLowerCase().contains(lower)
+                        || tm.getRegistrationId().toLowerCase().contains(lower)
+                        || tm.getStatus().toLowerCase().contains(lower)) {
+                    filtered.add(tm);
+                }
+            }
+            tblPayment.setItems(filtered);
+        });
+    }
+
+    // ── Table row → form fill ─────────────────────────────────────────────────
+
+    private void setupTableRowClick() {
+        tblPayment.setOnMouseClicked(e -> {
+            PaymentTM selected = tblPayment.getSelectionModel().getSelectedItem();
+            if (selected == null) return;
+            txtId.setText(selected.getId());
+            cmbRegistration.setValue(selected.getRegistrationId());
+            dpPaymentDate.setValue(selected.getPaymentDate());
+            txtAmount.setText(String.valueOf(selected.getAmount()));
+            cmbStatus.setValue(selected.getStatus());
+            btnSave.setText("Update");
+        });
+    }
+
+    // ── FXML Actions ──────────────────────────────────────────────────────────
+
+    @FXML
+    private void handleSave() {
+        try {
+            if (!validateInputs()) return;
+
+            String regId = cmbRegistration.getValue();
+            Registration registration = registrationBO.searchRegistration(regId);
+            if (registration == null) {
+                showMessage("Registration not found!", true);
+                return;
+            }
+
+            Payment payment = new Payment(
+                    txtId.getText(),
+                    dpPaymentDate.getValue(),
+                    Double.parseDouble(txtAmount.getText().trim()),
+                    cmbStatus.getValue(),
+                    registration
+            );
+
+            if (btnSave.getText().equals("Update")) {
+                paymentBO.updatePayment(payment);
+                showMessage("Payment updated successfully!", false);
+            } else {
+                paymentBO.savePayment(payment);
+                showMessage("Payment saved successfully!", false);
+            }
+
+            handleClear();
+            loadPayments();
+
+        } catch (NumberFormatException e) {
+            showMessage("Amount must be a valid number!", true);
+        } catch (Exception e) {
+            showMessage("Error: " + e.getMessage(), true);
+        }
+    }
+
+    private void handleDelete(String paymentId) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Delete payment \"" + row.getId() + "\"?", ButtonType.YES, ButtonType.NO);
-        alert.setHeaderText("Confirm Delete");
-        alert.showAndWait().ifPresent(bt -> {
-            if (bt == ButtonType.YES) {
+                "Delete payment " + paymentId + "?",
+                ButtonType.YES, ButtonType.NO);
+        alert.showAndWait().ifPresent(btn -> {
+            if (btn == ButtonType.YES) {
                 try {
-                    if (paymentBO.deletePayment(row.getId())) {
-                        masterList.remove(row);
-                        showSuccess("Payment deleted.");
-                        generateNextId();
-                    }
-                } catch (Exception e) { showError("Delete failed: " + e.getMessage()); }
+                    paymentBO.deletePayment(paymentId);
+                    showMessage("Payment deleted.", false);
+                    loadPayments();
+                    if (txtId.getText().equals(paymentId)) handleClear();
+                } catch (Exception e) {
+                    showMessage("Delete failed: " + e.getMessage(), true);
+                }
             }
         });
     }
 
     @FXML
     private void handleClear() {
-        isEditMode = false;
+        txtId.clear();
         cmbRegistration.setValue(null);
         dpPaymentDate.setValue(LocalDate.now());
-        txtAmount.clear(); cmbStatus.setValue(null);
+        txtAmount.clear();
+        cmbStatus.setValue(null);
+        lblMessage.setText("");
         btnSave.setText("Save");
-        generateNextId(); hideMessage();
+        loadNextId();
     }
 
+    @FXML
+    private void handleReportView() {
+        showMessage("Report feature — connect JasperReports here.", false);
+    }
+
+    // ── Validation ────────────────────────────────────────────────────────────
+
     private boolean validateInputs() {
-        if (cmbRegistration.getValue() == null) { showError("Please select a Registration."); return false; }
-        if (dpPaymentDate.getValue() == null) { showError("Payment Date is required."); return false; }
-        if (!txtAmount.getText().trim().matches("^[0-9]+(\\.[0-9]{1,2})?$")) {
-            showError("Amount must be a valid number."); txtAmount.requestFocus(); return false;
+        if (cmbRegistration.getValue() == null) {
+            showMessage("Please select a Registration.", true); return false;
         }
-        if (cmbStatus.getValue() == null) { showError("Please select a Status."); return false; }
+        if (dpPaymentDate.getValue() == null) {
+            showMessage("Please select a Payment Date.", true); return false;
+        }
+        if (txtAmount.getText().isBlank()) {
+            showMessage("Please enter an Amount.", true); return false;
+        }
+        if (cmbStatus.getValue() == null) {
+            showMessage("Please select a Status.", true); return false;
+        }
         return true;
     }
 
-    private void showError(String msg) {
-        lblMessage.setText("⚠ " + msg);
-        lblMessage.setStyle("-fx-text-fill:#c0392b;-fx-font-size:13px;-fx-font-weight:bold;");
-        lblMessage.setVisible(true); lblMessage.setManaged(true);
+    // ── UI helper ─────────────────────────────────────────────────────────────
+
+    private void showMessage(String msg, boolean isError) {
+        lblMessage.setText(msg);
+        lblMessage.setStyle(isError
+                ? "-fx-text-fill:#e74c3c;-fx-font-weight:bold;"
+                : "-fx-text-fill:#1d9e75;-fx-font-weight:bold;");
     }
-    private void showSuccess(String msg) {
-        lblMessage.setText("✔ " + msg);
-        lblMessage.setStyle("-fx-text-fill:#27ae60;-fx-font-size:13px;-fx-font-weight:bold;");
-        lblMessage.setVisible(true); lblMessage.setManaged(true);
-    }
-    private void hideMessage() { lblMessage.setVisible(false); lblMessage.setManaged(false); }
 }

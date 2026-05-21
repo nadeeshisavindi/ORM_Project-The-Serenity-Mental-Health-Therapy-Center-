@@ -2,7 +2,7 @@ package org.example.orm_project.util;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
-import org.example.orm_project.db.FactoryConfiguration;
+import org.example.orm_project.config.FactoryConfiguration;
 
 import java.util.HashMap;
 

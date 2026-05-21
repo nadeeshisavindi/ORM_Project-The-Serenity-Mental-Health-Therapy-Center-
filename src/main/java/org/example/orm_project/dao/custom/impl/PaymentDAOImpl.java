@@ -1,7 +1,7 @@
 package org.example.orm_project.dao.custom.impl;
 
 import org.example.orm_project.dao.custom.PaymentDAO;
-import org.example.orm_project.db.FactoryConfiguration;
+import org.example.orm_project.config.FactoryConfiguration;
 import org.example.orm_project.entity.Payment;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -53,6 +53,7 @@ public class PaymentDAOImpl implements PaymentDAO {
                 transaction.commit();
                 return true;
             }
+            transaction.rollback();
             return false;
         } catch (Exception e) {
             transaction.rollback();
@@ -82,19 +83,23 @@ public class PaymentDAOImpl implements PaymentDAO {
         }
     }
 
+    // getNextId() සහ generateNextId() දෙකම එකම logic — getNextId delegate කරනවා
     @Override
     public String getNextId() throws Exception {
+        return generateNextId();
+    }
+
+    @Override
+    public String generateNextId() throws Exception {
         Session session = FactoryConfiguration.getInstance().getSession();
         try {
-            String lastId = (String) session.createQuery(
-                            "SELECT p.id FROM Payment p ORDER BY p.id DESC")
+            String lastId = session.createQuery(
+                            "SELECT p.id FROM Payment p ORDER BY p.id DESC", String.class)
                     .setMaxResults(1)
                     .uniqueResult();
-
             if (lastId == null) return "PAY001";
-
-            int num = Integer.parseInt(lastId.substring(3));
-            return String.format("PAY%03d", num + 1);
+            int num = Integer.parseInt(lastId.substring(3)) + 1;
+            return String.format("PAY%03d", num);
         } finally {
             session.close();
         }
@@ -120,20 +125,6 @@ public class PaymentDAOImpl implements PaymentDAO {
                             "FROM Payment p WHERE p.registration.id = :regId", Payment.class)
                     .setParameter("regId", registrationId)
                     .getResultList();
-        } finally {
-            session.close();
-        }
-    }
-    @Override
-    public String generateNextId() throws Exception {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        try {
-            String lastId = session.createQuery(
-                            "SELECT p.id FROM Payment p ORDER BY p.id DESC", String.class)
-                    .setMaxResults(1).uniqueResult();
-            if (lastId == null) return "PAY001";
-            int num = Integer.parseInt(lastId.substring(3)) + 1;
-            return String.format("PAY%03d", num);
         } finally {
             session.close();
         }

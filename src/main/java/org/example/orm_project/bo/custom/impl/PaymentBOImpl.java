@@ -5,29 +5,16 @@ import org.example.orm_project.dao.DAOFactory;
 import org.example.orm_project.dao.DAOTypes;
 import org.example.orm_project.dao.custom.PaymentDAO;
 import org.example.orm_project.entity.Payment;
-import org.example.orm_project.bo.exception.PaymentProcessingException;
 
 import java.util.List;
 
 public class PaymentBOImpl implements PaymentBO {
 
     private final PaymentDAO paymentDAO =
-            (PaymentDAO) DAOFactory.getInstance().getDAO(DAOTypes.PAYMENT);
+            DAOFactory.getInstance().getDAO(DAOTypes.PAYMENT);
 
     @Override
     public boolean savePayment(Payment payment) throws Exception {
-        // Invalid amount check
-        if (payment.getAmount() <= 0) {
-            throw new PaymentProcessingException(
-                    "Invalid payment amount: " + payment.getAmount() + ". Amount must be greater than 0."
-            );
-        }
-        // Registration not linked
-        if (payment.getRegistration() == null) {
-            throw new PaymentProcessingException(
-                    "Payment must be linked to a valid registration."
-            );
-        }
         return paymentDAO.save(payment);
     }
 
