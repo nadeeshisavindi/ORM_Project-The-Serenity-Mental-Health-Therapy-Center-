@@ -13,7 +13,7 @@ public class FactoryConfiguration {
     private FactoryConfiguration() {
         Configuration configuration = new Configuration();
 
-        configuration.configure("hibernate.cfg.xml"); // ← මේ line එක add කරන්න!
+        configuration.configure("hibernate.cfg.xml");
 
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Patient.class);

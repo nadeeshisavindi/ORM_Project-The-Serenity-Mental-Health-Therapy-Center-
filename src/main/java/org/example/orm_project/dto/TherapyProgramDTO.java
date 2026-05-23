@@ -13,5 +13,5 @@ public class TherapyProgramDTO {
     private String description;
     private int durationWeeks;
     private double fee;
-    private String therapistId; // FK reference
+    private String therapistId;
 }

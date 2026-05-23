@@ -12,15 +12,18 @@ import org.example.orm_project.bo.BOFactory;
 import org.example.orm_project.bo.BOTypes;
 import org.example.orm_project.bo.custom.PatientBO;
 import org.example.orm_project.bo.custom.TherapistBO;
+import org.example.orm_project.bo.custom.TherapyProgramBO;
 import org.example.orm_project.bo.custom.TherapySessionBO;
 import org.example.orm_project.dto.tm.SessionTM;
 import org.example.orm_project.entity.Patient;
 import org.example.orm_project.entity.Therapist;
+import org.example.orm_project.entity.TherapyProgram;
 import org.example.orm_project.entity.TherapySession;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TherapySessionController implements Initializable {
@@ -54,6 +57,8 @@ public class TherapySessionController implements Initializable {
             (PatientBO) BOFactory.getInstance().getBO(BOTypes.PATIENT);
     private final TherapistBO therapistBO =
             (TherapistBO) BOFactory.getInstance().getBO(BOTypes.THERAPIST);
+    private final TherapyProgramBO programBO =
+            (TherapyProgramBO) BOFactory.getInstance().getBO(BOTypes.THERAPY_PROGRAM);
 
     private final ObservableList<SessionTM> masterList = FXCollections.observableArrayList();
     private boolean isEditMode = false;
@@ -86,11 +91,17 @@ public class TherapySessionController implements Initializable {
             for (Therapist t : therapistBO.getAllTherapists())
                 cmbTherapist.getItems().add(t.getId() + " - " + t.getName());
 
+            cmbProgram.getItems().clear();
+            List<TherapyProgram> programs = programBO.getAllTherapyPrograms();
+            for (TherapyProgram p : programs)
+                cmbProgram.getItems().add(p.getId() + " - " + p.getName());
+
             cmbStatus.setItems(FXCollections.observableArrayList(
                     "SCHEDULED", "COMPLETED", "CANCELLED"));
 
         } catch (Exception e) {
             showError("Combo load failed: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -170,7 +181,7 @@ public class TherapySessionController implements Initializable {
             String patientId   = cmbPatient.getValue().split(" - ")[0];
             String therapistId = cmbTherapist.getValue().split(" - ")[0];
 
-            Patient  patient   = patientBO.searchPatient(patientId);
+            Patient   patient   = patientBO.searchPatient(patientId);
             Therapist therapist = therapistBO.searchTherapist(therapistId);
 
             TherapySession session = new TherapySession(
@@ -258,28 +269,31 @@ public class TherapySessionController implements Initializable {
     }
 
     private boolean validateInputs() {
-        if (cmbPatient.getValue() == null)  { showError("Select a patient.");   return false; }
-        if (cmbTherapist.getValue() == null){ showError("Select a therapist."); return false; }
-        if (dpSessionDate.getValue() == null){ showError("Select a date.");     return false; }
+        if (cmbPatient.getValue() == null)   { showError("Select a patient.");          return false; }
+        if (cmbTherapist.getValue() == null) { showError("Select a therapist.");        return false; }
+        if (dpSessionDate.getValue() == null){ showError("Select a date.");             return false; }
         if (txtStartTime.getText().isBlank()){ showError("Enter start time (HH:MM)."); return false; }
         if (txtEndTime.getText().isBlank())  { showError("Enter end time (HH:MM).");   return false; }
-        if (cmbStatus.getValue() == null)   { showError("Select a status.");    return false; }
+        if (cmbStatus.getValue() == null)    { showError("Select a status.");           return false; }
         return true;
     }
 
     private void showError(String msg) {
         lblMessage.setText("⚠ " + msg);
         lblMessage.setStyle("-fx-text-fill:#c0392b;-fx-font-size:13px;-fx-font-weight:bold;");
-        lblMessage.setVisible(true); lblMessage.setManaged(true);
+        lblMessage.setVisible(true);
+        lblMessage.setManaged(true);
     }
 
     private void showSuccess(String msg) {
         lblMessage.setText("✔ " + msg);
         lblMessage.setStyle("-fx-text-fill:#27ae60;-fx-font-size:13px;-fx-font-weight:bold;");
-        lblMessage.setVisible(true); lblMessage.setManaged(true);
+        lblMessage.setVisible(true);
+        lblMessage.setManaged(true);
     }
 
     private void hideMessage() {
-        lblMessage.setVisible(false); lblMessage.setManaged(false);
+        lblMessage.setVisible(false);
+        lblMessage.setManaged(false);
     }
 }

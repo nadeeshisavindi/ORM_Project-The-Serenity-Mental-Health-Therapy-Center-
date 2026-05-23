@@ -25,17 +25,17 @@ public class Registration {
     @Column(name = "amount_paid")
     private double amountPaid;
 
-    // Owning side — FK = patient_id
+
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
 
-    // Owning side — FK = program_id
+
     @ManyToOne
     @JoinColumn(name = "program_id", nullable = false)
     private TherapyProgram therapyProgram;
 
-    // One Registration → One Payment
+
     @OneToMany(mappedBy = "registration", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Payment> payments;
 }

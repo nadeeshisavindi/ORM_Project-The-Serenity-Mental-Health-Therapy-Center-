@@ -57,7 +57,7 @@ public class PaymentController implements Initializable {
         setupTableRowClick();
     }
 
-    // ── Column bindings ──────────────────────────────────────────────────────
+
 
     private void setupColumns() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -69,7 +69,7 @@ public class PaymentController implements Initializable {
         tblPayment.setItems(paymentList);
     }
 
-    // ── Load helpers ─────────────────────────────────────────────────────────
+
 
     private void loadNextId() {
         try {
@@ -115,7 +115,7 @@ public class PaymentController implements Initializable {
         }
     }
 
-    // ── Search ────────────────────────────────────────────────────────────────
+
 
     private void setupSearch() {
         txtSearch.textProperty().addListener((obs, oldVal, newVal) -> {
@@ -151,7 +151,6 @@ public class PaymentController implements Initializable {
         });
     }
 
-    // ── FXML Actions ──────────────────────────────────────────────────────────
 
     @FXML
     private void handleSave() {
@@ -226,7 +225,7 @@ public class PaymentController implements Initializable {
         showMessage("Report feature — connect JasperReports here.", false);
     }
 
-    // ── Validation ────────────────────────────────────────────────────────────
+
 
     private boolean validateInputs() {
         if (cmbRegistration.getValue() == null) {
@@ -244,7 +243,7 @@ public class PaymentController implements Initializable {
         return true;
     }
 
-    // ── UI helper ─────────────────────────────────────────────────────────────
+
 
     private void showMessage(String msg, boolean isError) {
         lblMessage.setText(msg);

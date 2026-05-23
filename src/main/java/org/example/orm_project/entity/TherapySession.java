@@ -32,14 +32,14 @@ public class TherapySession {
     private String notes;
 
     @Column(name = "status")
-    private String status; // "SCHEDULED", "COMPLETED", "CANCELLED"
+    private String status;
 
-    // Owning side — FK = patient_id
+
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
 
-    // Owning side — FK = therapist_id
+
     @ManyToOne
     @JoinColumn(name = "therapist_id", nullable = false)
     private Therapist therapist;

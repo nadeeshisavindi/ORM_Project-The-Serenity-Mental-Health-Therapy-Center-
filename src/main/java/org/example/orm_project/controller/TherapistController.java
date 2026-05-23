@@ -141,7 +141,7 @@ public class TherapistController implements Initializable {
         }
     }
 
-    // SAVE / UPDATE
+    // save
     @FXML
     private void handleSave() {
         if (!validate()) return;
@@ -168,7 +168,6 @@ public class TherapistController implements Initializable {
         }
     }
 
-    // DELETE BUTTON (FXML)
     @FXML
     private void handleDelete() {
         TherapistTM selected = tblTherapist.getSelectionModel().getSelectedItem();

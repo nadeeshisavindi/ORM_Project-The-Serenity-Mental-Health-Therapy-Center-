@@ -13,6 +13,6 @@ public class RegistrationDTO {
     private String id;
     private LocalDate registrationDate;
     private double amountPaid;
-    private String patientId;    // FK reference
-    private String programId;    // FK reference
+    private String patientId;
+    private String programId;
 }

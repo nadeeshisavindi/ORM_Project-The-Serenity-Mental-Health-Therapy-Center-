@@ -38,6 +38,10 @@
             <Button onAction="#handleReportView" prefWidth="300" style="-fx-background-color:#1d9e75;-fx-text-fill:white;                            -fx-font-weight:bold;-fx-background-radius:8;-fx-cursor:hand;" text="Report View" />
         </VBox>
 
+
+
+
+
         <VBox layoutX="794.0" layoutY="79.0" prefWidth="570" spacing="10" style="-fx-background-color:white;-fx-padding:20;                      -fx-background-radius:12;-fx-border-color:#e8e6f8;-fx-border-radius:12;">
 
             <Label style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#26215c;" text="Payment List" />

@@ -30,7 +30,7 @@ public class TherapyProgram {
     @Column(name = "fee", nullable = false)
     private double fee;
 
-    // Owning side — FK = therapist_id
+
     @ManyToOne
     @JoinColumn(name = "therapist_id")
     private Therapist therapist;

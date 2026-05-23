@@ -16,7 +16,7 @@ public class TherapySessionDTO {
     private LocalTime startTime;
     private LocalTime endTime;
     private String notes;
-    private String status; // "SCHEDULED", "COMPLETED", "CANCELLED"
-    private String patientId;   // FK reference
-    private String therapistId; // FK reference
+    private String status;
+    private String patientId;
+    private String therapistId;
 }

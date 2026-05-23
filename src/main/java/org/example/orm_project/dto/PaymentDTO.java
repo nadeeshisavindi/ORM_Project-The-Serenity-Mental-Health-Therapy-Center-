@@ -13,6 +13,6 @@ public class PaymentDTO {
     private String id;
     private LocalDate paymentDate;
     private double amount;
-    private String status; // "PAID", "PENDING"
-    private String registrationId; // FK reference
+    private String status;
+    private String registrationId;
 }

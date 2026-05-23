@@ -32,7 +32,7 @@ public class LoginController {
             return;
         }
 
-        // TEMP LOGIN CHECK (replace with DB later)
+
         if (username.equals("admin") && password.equals("123")) {
 
             loadDashboard();

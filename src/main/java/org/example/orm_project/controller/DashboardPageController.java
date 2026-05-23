@@ -24,7 +24,7 @@ public class DashboardPageController {
     @FXML
     public void initialize() {
 
-        // Temporary demo values (later DB connect කරමු)
+
         dateLabel.setText("Wednesday, May 20, 2026");
 
         totalPatients.setText("25");

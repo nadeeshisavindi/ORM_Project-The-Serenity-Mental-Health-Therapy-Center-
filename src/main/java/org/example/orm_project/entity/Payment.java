@@ -25,9 +25,7 @@ public class Payment {
     private double amount;
 
     @Column(name = "status")
-    private String status; // "PAID", "PENDING"
-
-    // Owning side — FK = registration_id
+    private String status;
     @ManyToOne
     @JoinColumn(name = "registration_id", nullable = false)
     private Registration registration;

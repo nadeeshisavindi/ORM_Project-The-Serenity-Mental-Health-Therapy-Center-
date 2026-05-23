@@ -82,7 +82,7 @@ public class RegistrationController implements Initializable {
         colDate.setCellValueFactory(new PropertyValueFactory<>("registrationDate"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amountPaid"));
 
-        // Patient name column
+        // patient name column
         colPatient.setCellFactory(col -> new TableCell<>() {
             @Override protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);

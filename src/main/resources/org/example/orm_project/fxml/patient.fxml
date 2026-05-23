@@ -18,7 +18,7 @@
 
     <children>
 
-        <!-- LEFT FORM PANEL -->
+
         <VBox layoutX="382.0" layoutY="76.0"
               prefHeight="650.0" prefWidth="350" spacing="12"
               style="-fx-background-color:white;
@@ -66,7 +66,10 @@
 
         </VBox>
 
-        <!-- RIGHT TABLE PANEL -->
+
+
+
+
         <VBox layoutX="751.0" layoutY="76.0"
               prefHeight="650.0" prefWidth="580" spacing="10"
               style="-fx-background-color:white;

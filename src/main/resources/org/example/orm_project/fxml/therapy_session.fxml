@@ -19,7 +19,7 @@
 
     <children>
 
-        <!-- LEFT FORM PANEL -->
+        <!-- left table penal-->
         <VBox layoutX="382.0" layoutY="76.0"
               prefHeight="700.0" prefWidth="350" spacing="12"
               style="-fx-background-color:white;
@@ -74,7 +74,7 @@
 
         </VBox>
 
-        <!-- RIGHT TABLE PANEL -->
+        <!-- right table penal-->
         <VBox layoutX="751.0" layoutY="76.0"
               prefHeight="700.0" prefWidth="620" spacing="10"
               style="-fx-background-color:white;

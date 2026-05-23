@@ -7,7 +7,7 @@ import org.hibernate.Session;
 
 import java.util.List;
 
-// Special HQL Queries
+
 public class QueryDAOImpl implements SuperDAO {
 
 
@@ -25,7 +25,7 @@ public class QueryDAOImpl implements SuperDAO {
         }
     }
 
-    // Part A Q4 — Patients + their enrolled Therapy Programs (HQL Join Fetch)
+
     public List<Object[]> getPatientsWithTheirPrograms() throws Exception {
         Session session = FactoryConfiguration.getInstance().getSession();
         try {

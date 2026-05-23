@@ -10,6 +10,6 @@ public interface RegistrationDAO extends CrudDAO<Registration> {
 
     List<Registration> getRegistrationsByPatientId(String patientId) throws Exception;
 
-    // Patient already registered  check
+
     boolean isAlreadyRegistered(String patientId, String programId) throws Exception;
 }
