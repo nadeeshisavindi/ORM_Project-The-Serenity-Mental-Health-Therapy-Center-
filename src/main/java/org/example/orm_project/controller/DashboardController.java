@@ -30,16 +30,21 @@ public class DashboardController {
     void navigateToTherapists(ActionEvent event) {
         loadPage("therapists.fxml");
     }
+    @FXML
+    void navigateToRegistration(ActionEvent event) {
+        loadPage("registration.fxml");
+    }
+    @FXML
+    void navigateToPrograms(ActionEvent event) {
+        loadPage("therapy_program.fxml");
+    }
 
     @FXML
     void navigateToSessions(ActionEvent event) {
         loadPage("therapy_session_scheduling.fxml");
     }
 
-    @FXML
-    void navigateToPrograms(ActionEvent event) {
-        loadPage("therapy_program_management.fxml");
-    }
+   
 
     @FXML
     void navigateToPayment(ActionEvent event) {

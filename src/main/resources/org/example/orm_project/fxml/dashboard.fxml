@@ -165,6 +165,17 @@
                      </font>
                         </Button>
 
+                        <Button maxWidth="Infinity" onAction="#navigateToRegistration" prefHeight="42.0" prefWidth="247.0"
+                                style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;"
+                                text="📝   Registrations">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+
                         <Button maxWidth="Infinity" onAction="#navigateToPrograms" prefHeight="44.0" prefWidth="247.0" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="📋   Programs">
                             <VBox.margin>
                                 <Insets top="10.0" />

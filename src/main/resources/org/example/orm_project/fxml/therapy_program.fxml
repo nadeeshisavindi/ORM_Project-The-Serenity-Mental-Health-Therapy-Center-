@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,20 +14,20 @@
             style="-fx-background-color:#16213e;"
             xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.orm_project.controller.PatientController">
+            fx:controller="org.example.orm_project.controller.TherapyProgramController">
 
     <children>
 
         <!-- LEFT FORM PANEL -->
         <VBox layoutX="382.0" layoutY="76.0"
-              prefHeight="650.0" prefWidth="350" spacing="12"
+              prefHeight="640.0" prefWidth="350" spacing="12"
               style="-fx-background-color:white;
                      -fx-padding:20;
                      -fx-background-radius:12;
                      -fx-border-color:#e8e6f8;
                      -fx-border-radius:12;">
 
-            <Label text="Patient Management"
+            <Label text="Therapy Program Management"
                    style="-fx-font-size:18;-fx-font-weight:bold;-fx-text-fill:#26215c;"/>
 
             <Label fx:id="lblMessage" text=""
@@ -37,59 +37,61 @@
             <Label text="ID"/>
             <TextField fx:id="txtId" editable="false"/>
 
-            <Label text="Full Name"/>
-            <TextField fx:id="txtName" promptText="Enter full name"/>
+            <Label text="Program Name"/>
+            <TextField fx:id="txtName" promptText="Enter program name"/>
 
-            <Label text="NIC"/>
-            <TextField fx:id="txtNic" promptText="Enter NIC number"/>
+            <Label text="Duration (Weeks)"/>
+            <TextField fx:id="txtDuration" promptText="e.g. 12"/>
 
-            <Label text="Email"/>
-            <TextField fx:id="txtEmail" promptText="Enter email address"/>
+            <Label text="Fee (LKR)"/>
+            <TextField fx:id="txtFee" promptText="e.g. 80000"/>
 
-            <Label text="Phone"/>
-            <TextField fx:id="txtPhone" promptText="Enter phone number"/>
+            <Label text="Description"/>
+            <TextField fx:id="txtDescription" promptText="Enter description"/>
 
-            <Label text="Medical History"/>
-            <TextArea fx:id="txtMedicalHistory"
-                      promptText="Enter medical history..."
-                      prefHeight="80" wrapText="true"/>
+            <Label text="Therapist"/>
+            <ComboBox fx:id="cmbTherapist" prefWidth="300"/>
 
             <HBox spacing="8">
                 <Button fx:id="btnSave"
                         text="Save" onAction="#handleSave"
                         style="-fx-background-color:#7f77dd;-fx-text-fill:white;"/>
-                <Button text="Delete" onAction="#handleClear"
+                <Button text="Delete" onAction="#handleDelete"
                         style="-fx-background-color:#e74c3c;-fx-text-fill:white;"/>
                 <Button text="Reset" onAction="#handleClear"
                         style="-fx-background-color:#888;-fx-text-fill:white;"/>
             </HBox>
 
+            <Button text="Report View" onAction="#handleReportView" prefWidth="300"
+                    style="-fx-background-color:#1d9e75;-fx-text-fill:white;
+                           -fx-font-weight:bold;-fx-background-radius:8;-fx-cursor:hand;"/>
+
         </VBox>
 
         <!-- RIGHT TABLE PANEL -->
         <VBox layoutX="751.0" layoutY="76.0"
-              prefHeight="650.0" prefWidth="580" spacing="10"
+              prefHeight="640.0" prefWidth="580" spacing="10"
               style="-fx-background-color:white;
                      -fx-padding:20;
                      -fx-background-radius:12;
                      -fx-border-color:#e8e6f8;
                      -fx-border-radius:12;">
 
-            <Label text="Patient List"
+            <Label text="Program List"
                    style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#26215c;"/>
 
             <TextField fx:id="txtSearch"
-                       promptText="Search patient..."
+                       promptText="Search program..."
                        style="-fx-background-radius:8;"/>
 
-            <TableView fx:id="tblPatient" prefHeight="500">
+            <TableView fx:id="tblProgram" prefHeight="500">
                 <columns>
-                    <TableColumn fx:id="colId"     text="ID"      prefWidth="70"/>
-                    <TableColumn fx:id="colName"   text="Name"    prefWidth="140"/>
-                    <TableColumn fx:id="colNic"    text="NIC"     prefWidth="110"/>
-                    <TableColumn fx:id="colEmail"  text="Email"   prefWidth="130"/>
-                    <TableColumn fx:id="colPhone"  text="Phone"   prefWidth="90"/>
-                    <TableColumn fx:id="colAction" text="Actions" prefWidth="140"/>
+                    <TableColumn fx:id="colId"        text="ID"          prefWidth="70"/>
+                    <TableColumn fx:id="colName"      text="Name"        prefWidth="150"/>
+                    <TableColumn fx:id="colDuration"  text="Duration"    prefWidth="80"/>
+                    <TableColumn fx:id="colFee"       text="Fee (LKR)"   prefWidth="90"/>
+                    <TableColumn fx:id="colTherapist" text="Therapist"   prefWidth="140"/>
+                    <TableColumn fx:id="colAction"    text="Actions"     prefWidth="140"/>
                 </columns>
             </TableView>
 
