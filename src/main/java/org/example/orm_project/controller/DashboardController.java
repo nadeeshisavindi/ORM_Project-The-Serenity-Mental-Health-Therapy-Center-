@@ -41,7 +41,7 @@ public class DashboardController {
 
     @FXML
     void navigateToSessions(ActionEvent event) {
-        loadPage("therapy_session_scheduling.fxml");
+        loadPage("therapy_session.fxml");
     }
 
    
