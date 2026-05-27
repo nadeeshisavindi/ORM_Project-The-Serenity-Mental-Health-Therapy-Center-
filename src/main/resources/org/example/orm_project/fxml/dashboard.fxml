@@ -55,27 +55,27 @@
                             <VBox.margin>
                                 <Insets top="10.0" />
                             </VBox.margin>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
+                            <font>
+                                <Font size="16.0" />
+                            </font>
                         </Button>
 
                         <Button maxWidth="Infinity" onAction="#navigateToTherapists" prefHeight="41.0" prefWidth="247.0" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="🩺   Therapists">
                             <VBox.margin>
                                 <Insets top="10.0" />
                             </VBox.margin>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
+                            <font>
+                                <Font size="16.0" />
+                            </font>
                         </Button>
 
                         <Button maxWidth="Infinity" onAction="#navigateToSessions" prefHeight="43.0" prefWidth="247.0" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="📅   Sessions">
                             <VBox.margin>
                                 <Insets top="10.0" />
                             </VBox.margin>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
+                            <font>
+                                <Font size="16.0" />
+                            </font>
                         </Button>
 
                         <Button maxWidth="Infinity" onAction="#navigateToRegistration" prefHeight="42.0" prefWidth="247.0"
@@ -93,19 +93,31 @@
                             <VBox.margin>
                                 <Insets top="10.0" />
                             </VBox.margin>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
+                            <font>
+                                <Font size="16.0" />
+                            </font>
                         </Button>
 
                         <Button maxWidth="Infinity" onAction="#navigateToPayment" prefHeight="42.0" prefWidth="247.0" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="💳   Payments">
                             <VBox.margin>
                                 <Insets top="10.0" />
                             </VBox.margin>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
+                            <font>
+                                <Font size="16.0" />
+                            </font>
                         </Button>
+
+
+                        <Button maxWidth="Infinity" onAction="#navigateToUser" prefHeight="42.0" prefWidth="247.0" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text=" 🙍‍ User">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+
+
                     </children>
                 </VBox>
 
@@ -116,14 +128,14 @@
                         <VBox prefHeight="0.0" prefWidth="247.0" spacing="2">
                             <children>
                                 <VBox prefHeight="34.0" prefWidth="247.0">
-                           <children>
+                                    <children>
 
-                                              <Button maxWidth="Infinity" onAction="#logout" prefHeight="50.0" prefWidth="247.0" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="Log out">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Button>
-                           </children></VBox>
+                                        <Button maxWidth="Infinity" onAction="#logout" prefHeight="50.0" prefWidth="247.0" style="-fx-background-color: rgba(127,119,221,0.18); -fx-text-fill: #b4b2a9;" text="Log out">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Button>
+                                    </children></VBox>
                             </children>
                         </VBox>
                     </children>

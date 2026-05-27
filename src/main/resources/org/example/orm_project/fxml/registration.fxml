@@ -11,53 +11,36 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="1080" prefWidth="1600"
-            style="-fx-background-color:#16213e;"
-            xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.orm_project.controller.RegistrationController">
+<AnchorPane prefHeight="1080" prefWidth="1600" style="-fx-background-color:#16213e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.orm_project.controller.RegistrationController">
 
     <children>
 
 
-        <VBox layoutX="382.0" layoutY="76.0"
-              prefHeight="590.0" prefWidth="350" spacing="12"
-              style="-fx-background-color:white;
-                     -fx-padding:20;
-                     -fx-background-radius:12;
-                     -fx-border-color:#e8e6f8;
-                     -fx-border-radius:12;">
+        <VBox layoutX="382.0" layoutY="76.0" prefHeight="590.0" prefWidth="350" spacing="12" style="-fx-background-color:white;                      -fx-padding:20;                      -fx-background-radius:12;                      -fx-border-color:#e8e6f8;                      -fx-border-radius:12;">
 
-            <Label text="Registration Management"
-                   style="-fx-font-size:18;-fx-font-weight:bold;-fx-text-fill:#26215c;"/>
+            <Label style="-fx-font-size:18;-fx-font-weight:bold;-fx-text-fill:#26215c;" text="Registration Management" />
 
-            <Label fx:id="lblMessage" text=""
-                   wrapText="true" prefWidth="310"
-                   visible="false" managed="false"/>
+            <Label fx:id="lblMessage" managed="false" prefWidth="310" text="" visible="false" wrapText="true" />
 
-            <Label text="ID"/>
-            <TextField fx:id="txtId" editable="false"/>
+            <Label text="ID" />
+            <TextField fx:id="txtId" editable="false" />
 
-            <Label text="Patient"/>
-            <ComboBox fx:id="cmbPatient" prefWidth="300"/>
+            <Label text="Patient" />
+            <ComboBox fx:id="cmbPatient" prefWidth="300" />
 
-            <Label text="Therapy Program"/>
-            <ComboBox fx:id="cmbProgram" prefWidth="300"/>
+            <Label text="Therapy Program" />
+            <ComboBox fx:id="cmbProgram" prefWidth="300" />
 
-            <Label text="Registration Date"/>
-            <DatePicker fx:id="dpRegistrationDate" prefWidth="300"/>
+            <Label text="Registration Date" />
+            <DatePicker fx:id="dpRegistrationDate" prefWidth="300" />
 
-            <Label text="Amount Paid (LKR)"/>
-            <TextField fx:id="txtAmountPaid" promptText="Enter amount"/>
+            <Label text="Amount Paid (LKR)" />
+            <TextField fx:id="txtAmountPaid" promptText="Enter amount" />
 
             <HBox spacing="8">
-                <Button fx:id="btnSave"
-                        text="Save" onAction="#handleSave"
-                        style="-fx-background-color:#7f77dd;-fx-text-fill:white;"/>
-                <Button text="Delete" onAction="#handleClear"
-                        style="-fx-background-color:#e74c3c;-fx-text-fill:white;"/>
-                <Button text="Reset" onAction="#handleClear"
-                        style="-fx-background-color:#888;-fx-text-fill:white;"/>
+                <Button fx:id="btnSave" onAction="#handleSave" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color:#7f77dd;-fx-text-fill:white;" text="Save" />
+                <Button onAction="#handleClear" prefHeight="25.0" prefWidth="95.0" style="-fx-background-color:#e74c3c;-fx-text-fill:white;" text="Delete" />
+                <Button onAction="#handleClear" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color:#888;-fx-text-fill:white;" text="Reset" />
             </HBox>
 
         </VBox>
@@ -66,29 +49,20 @@
 
 
 
-        <VBox layoutX="751.0" layoutY="76.0"
-              prefHeight="590.0" prefWidth="580" spacing="10"
-              style="-fx-background-color:white;
-                     -fx-padding:20;
-                     -fx-background-radius:12;
-                     -fx-border-color:#e8e6f8;
-                     -fx-border-radius:12;">
+        <VBox layoutX="751.0" layoutY="76.0" prefHeight="590.0" prefWidth="580" spacing="10" style="-fx-background-color:white;                      -fx-padding:20;                      -fx-background-radius:12;                      -fx-border-color:#e8e6f8;                      -fx-border-radius:12;">
 
-            <Label text="Registration List"
-                   style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#26215c;"/>
+            <Label style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#26215c;" text="Registration List" />
 
-            <TextField fx:id="txtSearch"
-                       promptText="Search registration..."
-                       style="-fx-background-radius:8;"/>
+            <TextField fx:id="txtSearch" promptText="Search registration..." style="-fx-background-radius:8;" />
 
             <TableView fx:id="tblRegistration" prefHeight="450">
                 <columns>
-                    <TableColumn fx:id="colId"      text="ID"          prefWidth="75"/>
-                    <TableColumn fx:id="colPatient" text="Patient"     prefWidth="130"/>
-                    <TableColumn fx:id="colProgram" text="Program"     prefWidth="130"/>
-                    <TableColumn fx:id="colDate"    text="Date"        prefWidth="100"/>
-                    <TableColumn fx:id="colAmount"  text="Amount (LKR)" prefWidth="110"/>
-                    <TableColumn fx:id="colAction"  text="Actions"     prefWidth="140"/>
+                    <TableColumn fx:id="colId" prefWidth="75" text="ID" />
+                    <TableColumn fx:id="colPatient" prefWidth="130" text="Patient" />
+                    <TableColumn fx:id="colProgram" prefWidth="130" text="Program" />
+                    <TableColumn fx:id="colDate" prefWidth="100" text="Date" />
+                    <TableColumn fx:id="colAmount" prefWidth="110" text="Amount (LKR)" />
+                    <TableColumn fx:id="colAction" prefWidth="140" text="Actions" />
                 </columns>
             </TableView>
 

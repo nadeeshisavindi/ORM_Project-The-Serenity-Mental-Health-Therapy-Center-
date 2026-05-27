@@ -10,77 +10,64 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600" prefWidth="1000" style="-fx-background-color: #16213e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.orm_project.controller.UserController">
+<AnchorPane prefHeight="1080" prefWidth="1600" style="-fx-background-color:#16213e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.orm_project.controller.UserController">
 
     <children>
 
         <!-- LEFT FORM PANEL -->
-        <VBox layoutX="25.0" layoutY="20.0" prefWidth="360" spacing="12" style="-fx-background-color:white;                      -fx-padding:20;                      -fx-background-radius:12;                      -fx-border-color:#e8e6f8;                      -fx-border-radius:12;">
+        <VBox layoutX="382.0" layoutY="67.0" prefHeight="501.0" prefWidth="350" spacing="12" style="-fx-background-color:white;                      -fx-padding:20;                      -fx-background-radius:12;                      -fx-border-color:#e8e6f8;                      -fx-border-radius:12;">
 
-            <Label style="-fx-font-size:18; -fx-font-weight:bold; -fx-text-fill:#26215c;" text="User Management" />
+            <Label style="-fx-font-size:18;-fx-font-weight:bold;-fx-text-fill:#26215c;" text="User Management" />
 
-            <Label fx:id="lblMessage" visible="false" />
+            <Label fx:id="lblMessage" managed="false" prefWidth="310" text="" visible="false" wrapText="true" />
 
-            <Label text="User ID">
-            <font>
-               <Font name="System Bold" size="12.0" />
-            </font></Label>
-            <TextField fx:id="txtId" editable="false" promptText="U001" />
+            <Label text="ID" />
+            <TextField fx:id="txtId" editable="false" />
 
-            <Label text="Username *">
-            <font>
-               <Font name="System Bold" size="12.0" />
-            </font></Label>
-            <TextField fx:id="txtUsername" promptText="savindi " />
+            <Label text="Username" />
+            <TextField fx:id="txtUsername" promptText="Enter username" />
 
-            <Label text="Password *">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font></Label>
-
+            <Label text="Password" />
             <PasswordField fx:id="txtPassword" promptText="*********" />
+            <TextField fx:id="txtPasswordVisible" managed="false" promptText="*********" visible="false" />
 
-            <Label text="Role">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font></Label>
+            <Label text="Confirm Password" />
+            <PasswordField fx:id="txtConfirmPassword" promptText="Re-enter password" />
+
+            <VBox fx:id="vboxChangePass" managed="false" spacing="6" style="-fx-background-color:#f4f3fc;                          -fx-padding:10;                          -fx-background-radius:8;                          -fx-border-color:#d5d2f0;                          -fx-border-radius:8;" visible="false">
+                <Label style="-fx-font-size:11px;-fx-text-fill:#555;-fx-font-weight:bold;" text="New Password (blank = keep current)" />
+                <PasswordField fx:id="txtNewPassword" promptText="New password (optional)" />
+            </VBox>
+
+            <Label text="Role" />
             <ComboBox fx:id="cmbRole" prefWidth="300" />
 
-            <!-- ACTION BUTTONS -->
             <HBox spacing="8">
-
-                <Button fx:id="btnSave" onAction="#handleSave" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color:#7f77dd; -fx-text-fill:white;" text="Save" />
-
-                <Button onAction="#handleSave" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color:#2B3990; -fx-text-fill:white;" text="Update" />
-
-                <Button onAction="#handleClear" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color:#888; -fx-text-fill:white;" text="Reset" />
-
+                <Button fx:id="btnSave" onAction="#handleSave" prefHeight="26.0" prefWidth="96.0" style="-fx-background-color:#7f77dd;-fx-text-fill:white;" text="Save" />
+                <Button onAction="#handleClear" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color:#e74c3c;-fx-text-fill:white;" text="Delete" />
+                <Button onAction="#handleClear" prefHeight="25.0" prefWidth="95.0" style="-fx-background-color:#888;-fx-text-fill:white;" text="Reset" />
             </HBox>
 
         </VBox>
 
         <!-- RIGHT TABLE PANEL -->
-        <VBox layoutX="420.0" layoutY="20.0" prefWidth="550" spacing="10" style="-fx-background-color:white;                      -fx-padding:20;                      -fx-background-radius:12;                      -fx-border-color:#e8e6f8;                      -fx-border-radius:12;">
+        <VBox layoutX="753.0" layoutY="63.0" prefHeight="508.0" prefWidth="522.0" spacing="10" style="-fx-background-color:white;                      -fx-padding:20;                      -fx-background-radius:12;                      -fx-border-color:#e8e6f8;                      -fx-border-radius:12;">
 
-            <Label style="-fx-font-size:16; -fx-font-weight:bold;" text="User List" />
+            <Label style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#26215c;" text="User List" />
 
-            <TextField fx:id="txtSearch" prefWidth="500" promptText="Search user..." style="-fx-background-radius:8;" />
+            <TextField fx:id="txtSearch" promptText="Search user..." style="-fx-background-radius:8;" />
 
-            <TableView fx:id="tblUser" prefHeight="450">
-
+            <TableView fx:id="tblUser" prefHeight="488.0" prefWidth="726.0">
                 <columns>
-                    <TableColumn fx:id="colId" prefWidth="100" text="ID" />
-                    <TableColumn fx:id="colUsername" prefWidth="180" text="Username" />
-                    <TableColumn fx:id="colRole" prefWidth="150" text="Role" />
-                    <TableColumn fx:id="colAction" prefWidth="120" text="Action" />
+                    <TableColumn fx:id="colId" prefWidth="120" text="User ID" />
+                    <TableColumn fx:id="colUsername" prefWidth="148.0" text="Username" />
+                    <TableColumn fx:id="colRole" minWidth="0.0" prefWidth="155.0" text="Role" />
+                    <TableColumn fx:id="colAction" prefWidth="179.0" text="Action" />
                 </columns>
-
             </TableView>
 
         </VBox>
 
     </children>
-
 </AnchorPane>

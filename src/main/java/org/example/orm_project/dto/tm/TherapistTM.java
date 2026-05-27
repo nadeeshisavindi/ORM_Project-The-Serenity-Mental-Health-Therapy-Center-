@@ -13,4 +13,5 @@ public class TherapistTM {
     private String email;
     private String phone;
     private String specialization;
+    private String availability;
 }

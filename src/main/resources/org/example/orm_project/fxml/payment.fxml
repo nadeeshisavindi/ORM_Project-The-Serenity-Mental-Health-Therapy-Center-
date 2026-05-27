@@ -14,7 +14,7 @@
 <AnchorPane prefHeight="1080.0" prefWidth="1600.0" style="-fx-background-color:#16213e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.orm_project.controller.PaymentController">
     <children>
 
-        <VBox layoutX="370.0" layoutY="79.0" prefHeight="562.0" prefWidth="416.0" spacing="12" style="-fx-background-color:white;-fx-padding:20;                      -fx-background-radius:12;-fx-border-color:#e8e6f8;-fx-border-radius:12;">
+        <VBox layoutX="370.0" layoutY="79.0" prefHeight="556.0" prefWidth="397.0" spacing="12" style="-fx-background-color:white;-fx-padding:20;                      -fx-background-radius:12;-fx-border-color:#e8e6f8;-fx-border-radius:12;">
 
             <Label style="-fx-font-size:18;-fx-font-weight:bold;-fx-text-fill:#26215c;" text="Payment Management" />
             <Label fx:id="lblMessage" text="" />
@@ -30,9 +30,9 @@
             <ComboBox fx:id="cmbStatus" prefWidth="300" />
 
             <HBox spacing="8">
-                <Button fx:id="btnSave" onAction="#handleSave" style="-fx-background-color:#7f77dd;-fx-text-fill:white;                                -fx-background-radius:8;-fx-cursor:hand;" text="Save" />
-                <Button onAction="#handleClear" style="-fx-background-color:#e74c3c;-fx-text-fill:white;                                -fx-background-radius:8;-fx-cursor:hand;" text="Delete" />
-                <Button onAction="#handleClear" style="-fx-background-color:#888;-fx-text-fill:white;                                -fx-background-radius:8;-fx-cursor:hand;" text="Reset" />
+                <Button fx:id="btnSave" onAction="#handleSave" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #7f77dd;" text="Save" textFill="WHITE" />
+                <Button onAction="#handleClear" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #e74c3c;" text="Delete" textFill="WHITE" />
+                <Button onAction="#handleClear" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #888;" text="Reset" textFill="WHITE" />
             </HBox>
 
             <Button onAction="#handleReportView" prefWidth="300" style="-fx-background-color:#1d9e75;-fx-text-fill:white;                            -fx-font-weight:bold;-fx-background-radius:8;-fx-cursor:hand;" text="Report View" />
@@ -42,7 +42,7 @@
 
 
 
-        <VBox layoutX="794.0" layoutY="79.0" prefWidth="570" spacing="10" style="-fx-background-color:white;-fx-padding:20;                      -fx-background-radius:12;-fx-border-color:#e8e6f8;-fx-border-radius:12;">
+        <VBox layoutX="777.0" layoutY="79.0" prefHeight="556.0" prefWidth="556.0" spacing="10" style="-fx-background-color:white;-fx-padding:20;                      -fx-background-radius:12;-fx-border-color:#e8e6f8;-fx-border-radius:12;">
 
             <Label style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#26215c;" text="Payment List" />
             <TextField fx:id="txtSearch" promptText="Search payment..." style="-fx-background-radius:8;" />

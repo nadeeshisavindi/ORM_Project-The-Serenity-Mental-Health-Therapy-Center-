@@ -30,6 +30,12 @@ public class Therapist {
     @Column(name = "specialization")
     private String specialization;
 
+    @Column(name = "availability")
+    private String availability;
+
     @OneToMany(mappedBy = "therapist", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TherapySession> therapySessions;
+
+    @OneToMany(mappedBy = "therapist", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<TherapyProgram> therapyPrograms;
 }

@@ -11,95 +11,66 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="1080" prefWidth="1600"
-            style="-fx-background-color:#16213e;"
-            xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.orm_project.controller.TherapySessionController">
+<AnchorPane prefHeight="1080" prefWidth="1600" style="-fx-background-color:#16213e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.orm_project.controller.TherapySessionController">
 
     <children>
 
         <!-- left table penal-->
-        <VBox layoutX="382.0" layoutY="76.0"
-              prefHeight="700.0" prefWidth="350" spacing="12"
-              style="-fx-background-color:white;
-                     -fx-padding:20;
-                     -fx-background-radius:12;
-                     -fx-border-color:#e8e6f8;
-                     -fx-border-radius:12;">
+        <VBox layoutX="295.0" layoutY="76.0" prefHeight="663.0" prefWidth="382.0" spacing="12" style="-fx-background-color:white;                      -fx-padding:20;                      -fx-background-radius:12;                      -fx-border-color:#e8e6f8;                      -fx-border-radius:12;">
 
-            <Label text="Session Scheduling"
-                   style="-fx-font-size:18;-fx-font-weight:bold;-fx-text-fill:#26215c;"/>
+            <Label style="-fx-font-size:18;-fx-font-weight:bold;-fx-text-fill:#26215c;" text="Session Scheduling" />
 
-            <Label fx:id="lblMessage" text=""
-                   wrapText="true" prefWidth="310"
-                   visible="false" managed="false"/>
+            <Label fx:id="lblMessage" managed="false" prefWidth="310" text="" visible="false" wrapText="true" />
 
-            <Label text="Session ID"/>
-            <TextField fx:id="txtId" editable="false"/>
+            <Label text="Session ID" />
+            <TextField fx:id="txtId" editable="false" />
 
-            <Label text="Patient"/>
-            <ComboBox fx:id="cmbPatient" prefWidth="300"/>
+            <Label text="Patient" />
+            <ComboBox fx:id="cmbPatient" prefWidth="300" />
 
-            <Label text="Therapist"/>
-            <ComboBox fx:id="cmbTherapist" prefWidth="300"/>
+            <Label text="Therapist" />
+            <ComboBox fx:id="cmbTherapist" prefWidth="300" />
 
-            <Label text="Program"/>
-            <ComboBox fx:id="cmbProgram" prefWidth="300"/>
+            <Label text="Program" />
+            <ComboBox fx:id="cmbProgram" prefWidth="300" />
 
-            <Label text="Session Date"/>
-            <DatePicker fx:id="dpSessionDate" prefWidth="300"/>
+            <Label text="Session Date" />
+            <DatePicker fx:id="dpSessionDate" prefWidth="300" />
 
-            <Label text="Start Time (HH:MM)"/>
-            <TextField fx:id="txtStartTime" promptText="e.g. 09:00"/>
+            <Label text="Start Time (HH:MM)" />
+            <TextField fx:id="txtStartTime" promptText="e.g. 09:00" />
 
-            <Label text="End Time (HH:MM)"/>
-            <TextField fx:id="txtEndTime" promptText="e.g. 10:00"/>
+            <Label text="End Time (HH:MM)" />
+            <TextField fx:id="txtEndTime" promptText="e.g. 10:00" />
 
-            <Label text="Notes"/>
-            <TextField fx:id="txtNotes" promptText="Enter notes (optional)"/>
+            <Label text="Status" />
+            <ComboBox fx:id="cmbStatus" prefWidth="300" />
 
-            <Label text="Status"/>
-            <ComboBox fx:id="cmbStatus" prefWidth="300"/>
-
-            <HBox spacing="8">
-                <Button fx:id="btnSave"
-                        text="Save" onAction="#handleSave"
-                        style="-fx-background-color:#7f77dd;-fx-text-fill:white;"/>
-                <Button text="Delete" onAction="#handleDelete"
-                        style="-fx-background-color:#e74c3c;-fx-text-fill:white;"/>
-                <Button text="Reset" onAction="#handleClear"
-                        style="-fx-background-color:#888;-fx-text-fill:white;"/>
+            <HBox prefHeight="31.0" prefWidth="343.0" spacing="8">
+                <Button fx:id="btnSave" onAction="#handleSave" prefHeight="28.0" prefWidth="96.0" style="-fx-background-color:#7f77dd;-fx-text-fill:white;" text="Save" />
+                <Button onAction="#handleDelete" prefHeight="28.0" prefWidth="104.0" style="-fx-background-color:#e74c3c;-fx-text-fill:white;" text="Delete" />
+                <Button onAction="#handleClear" prefHeight="27.0" prefWidth="103.0" style="-fx-background-color:#888;-fx-text-fill:white;" text="Reset" />
             </HBox>
 
         </VBox>
 
         <!-- right table penal-->
-        <VBox layoutX="751.0" layoutY="76.0"
-              prefHeight="700.0" prefWidth="620" spacing="10"
-              style="-fx-background-color:white;
-                     -fx-padding:20;
-                     -fx-background-radius:12;
-                     -fx-border-color:#e8e6f8;
-                     -fx-border-radius:12;">
+        <VBox layoutX="688.0" layoutY="76.0" prefHeight="663.0" prefWidth="620.0" spacing="10" style="-fx-background-color:white;                      -fx-padding:20;                      -fx-background-radius:12;                      -fx-border-color:#e8e6f8;                      -fx-border-radius:12;">
 
-            <Label text="Session List"
-                   style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#26215c;"/>
+            <Label style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#26215c;" text="Session List" />
 
-            <TextField fx:id="txtSearch"
-                       promptText="Search sessions..."
-                       style="-fx-background-radius:8;"/>
+            <TextField fx:id="txtSearch" promptText="Search sessions..." style="-fx-background-radius:8;" />
 
-            <TableView fx:id="tblSession" prefHeight="580">
+            <TableView fx:id="tblSession" prefHeight="601.0" prefWidth="619.0">
                 <columns>
-                    <TableColumn fx:id="colId"        text="ID"        prefWidth="75"/>
-                    <TableColumn fx:id="colPatient"   text="Patient"   prefWidth="130"/>
-                    <TableColumn fx:id="colTherapist" text="Therapist" prefWidth="130"/>
-                    <TableColumn fx:id="colDate"      text="Date"      prefWidth="100"/>
-                    <TableColumn fx:id="colStart"     text="Start"     prefWidth="70"/>
-                    <TableColumn fx:id="colEnd"       text="End"       prefWidth="70"/>
-                    <TableColumn fx:id="colStatus"    text="Status"    prefWidth="90"/>
-                    <TableColumn fx:id="colAction"    text="Actions"   prefWidth="130"/>
+                    <TableColumn fx:id="colId" prefWidth="75" text="ID" />
+                    <TableColumn fx:id="colPatient" prefWidth="130" text="Patient" />
+                    <TableColumn fx:id="colTherapist" prefWidth="130" text="Therapist" />
+                    <TableColumn fx:id="colDate" prefWidth="100" text="Date" />
+                    <TableColumn fx:id="colStart" prefWidth="70" text="Start" />
+                    <TableColumn fx:id="colEnd" prefWidth="70" text="End" />
+                    <TableColumn fx:id="colStatus" prefWidth="90" text="Status" />
+                    <TableColumn fx:id="colAction" prefWidth="130" text="Actions" />
                 </columns>
             </TableView>
 

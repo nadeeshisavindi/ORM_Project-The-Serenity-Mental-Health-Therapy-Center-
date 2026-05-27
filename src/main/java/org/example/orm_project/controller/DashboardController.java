@@ -16,10 +16,10 @@ public class DashboardController {
     @FXML
     private VBox mainContent;
 
-    @FXML
-    void navigateToDashboard(ActionEvent event) {
-        loadPage("dashbord2.fxml");
-    }
+//    @FXML
+//    void navigateToDashboard(ActionEvent event) {
+//        loadPage("dashbord2.fxml");
+//    }
 
     @FXML
     void navigateToPatient(ActionEvent event) {
@@ -44,11 +44,17 @@ public class DashboardController {
         loadPage("therapy_session.fxml");
     }
 
-   
+
 
     @FXML
     void navigateToPayment(ActionEvent event) {
         loadPage("payment.fxml");
+    }
+
+
+    @FXML
+    void navigateToUser(ActionEvent event) {
+        loadPage("user.fxml");
     }
 
     @FXML
@@ -84,6 +90,5 @@ public class DashboardController {
         }
     }
 }
-
 
 

@@ -10,58 +10,39 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="1080" prefWidth="1600"
-            style="-fx-background-color:#16213e;"
-            xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.orm_project.controller.PatientController">
+<AnchorPane prefHeight="1080" prefWidth="1600" style="-fx-background-color:#16213e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.orm_project.controller.PatientController">
 
     <children>
 
 
-        <VBox layoutX="382.0" layoutY="76.0"
-              prefHeight="650.0" prefWidth="350" spacing="12"
-              style="-fx-background-color:white;
-                     -fx-padding:20;
-                     -fx-background-radius:12;
-                     -fx-border-color:#e8e6f8;
-                     -fx-border-radius:12;">
+        <VBox layoutX="382.0" layoutY="76.0" prefHeight="650.0" prefWidth="350" spacing="12" style="-fx-background-color:white;                      -fx-padding:20;                      -fx-background-radius:12;                      -fx-border-color:#e8e6f8;                      -fx-border-radius:12;">
 
-            <Label text="Patient Management"
-                   style="-fx-font-size:18;-fx-font-weight:bold;-fx-text-fill:#26215c;"/>
+            <Label style="-fx-font-size:18;-fx-font-weight:bold;-fx-text-fill:#26215c;" text="Patient Management" />
 
-            <Label fx:id="lblMessage" text=""
-                   wrapText="true" prefWidth="310"
-                   visible="false" managed="false"/>
+            <Label fx:id="lblMessage" managed="false" prefWidth="310" text="" visible="false" wrapText="true" />
 
-            <Label text="ID"/>
-            <TextField fx:id="txtId" editable="false"/>
+            <Label text="ID" />
+            <TextField fx:id="txtId" editable="false" />
 
-            <Label text="Full Name"/>
-            <TextField fx:id="txtName" promptText="Enter full name"/>
+            <Label text="Full Name" />
+            <TextField fx:id="txtName" promptText="Enter full name" />
 
-            <Label text="NIC"/>
-            <TextField fx:id="txtNic" promptText="Enter NIC number"/>
+            <Label text="NIC" />
+            <TextField fx:id="txtNic" promptText="Enter NIC number" />
 
-            <Label text="Email"/>
-            <TextField fx:id="txtEmail" promptText="Enter email address"/>
+            <Label text="Email" />
+            <TextField fx:id="txtEmail" promptText="Enter email address" />
 
-            <Label text="Phone"/>
-            <TextField fx:id="txtPhone" promptText="Enter phone number"/>
+            <Label text="Phone" />
+            <TextField fx:id="txtPhone" promptText="Enter phone number" />
 
-            <Label text="Medical History"/>
-            <TextArea fx:id="txtMedicalHistory"
-                      promptText="Enter medical history..."
-                      prefHeight="80" wrapText="true"/>
+            <Label text="Medical History" />
+            <TextArea fx:id="txtMedicalHistory" prefHeight="80" promptText="Enter medical history..." wrapText="true" />
 
             <HBox spacing="8">
-                <Button fx:id="btnSave"
-                        text="Save" onAction="#handleSave"
-                        style="-fx-background-color:#7f77dd;-fx-text-fill:white;"/>
-                <Button text="Delete" onAction="#handleClear"
-                        style="-fx-background-color:#e74c3c;-fx-text-fill:white;"/>
-                <Button text="Reset" onAction="#handleClear"
-                        style="-fx-background-color:#888;-fx-text-fill:white;"/>
+                <Button fx:id="btnSave" onAction="#handleSave" prefHeight="28.0" prefWidth="96.0" style="-fx-background-color:#7f77dd;-fx-text-fill:white;" text="Save" />
+                <Button onAction="#handleClear" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color:#e74c3c;-fx-text-fill:white;" text="Delete" />
+                <Button onAction="#handleClear" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color:#888;-fx-text-fill:white;" text="Reset" />
             </HBox>
 
         </VBox>
@@ -70,29 +51,20 @@
 
 
 
-        <VBox layoutX="751.0" layoutY="76.0"
-              prefHeight="650.0" prefWidth="580" spacing="10"
-              style="-fx-background-color:white;
-                     -fx-padding:20;
-                     -fx-background-radius:12;
-                     -fx-border-color:#e8e6f8;
-                     -fx-border-radius:12;">
+        <VBox layoutX="751.0" layoutY="76.0" prefHeight="650.0" prefWidth="580" spacing="10" style="-fx-background-color:white;                      -fx-padding:20;                      -fx-background-radius:12;                      -fx-border-color:#e8e6f8;                      -fx-border-radius:12;">
 
-            <Label text="Patient List"
-                   style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#26215c;"/>
+            <Label style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#26215c;" text="Patient List" />
 
-            <TextField fx:id="txtSearch"
-                       promptText="Search patient..."
-                       style="-fx-background-radius:8;"/>
+            <TextField fx:id="txtSearch" promptText="Search patient..." style="-fx-background-radius:8;" />
 
             <TableView fx:id="tblPatient" prefHeight="500">
                 <columns>
-                    <TableColumn fx:id="colId"     text="ID"      prefWidth="70"/>
-                    <TableColumn fx:id="colName"   text="Name"    prefWidth="140"/>
-                    <TableColumn fx:id="colNic"    text="NIC"     prefWidth="110"/>
-                    <TableColumn fx:id="colEmail"  text="Email"   prefWidth="130"/>
-                    <TableColumn fx:id="colPhone"  text="Phone"   prefWidth="90"/>
-                    <TableColumn fx:id="colAction" text="Actions" prefWidth="140"/>
+                    <TableColumn fx:id="colId" prefWidth="70" text="ID" />
+                    <TableColumn fx:id="colName" prefWidth="140" text="Name" />
+                    <TableColumn fx:id="colNic" prefWidth="110" text="NIC" />
+                    <TableColumn fx:id="colEmail" prefWidth="130" text="Email" />
+                    <TableColumn fx:id="colPhone" prefWidth="90" text="Phone" />
+                    <TableColumn fx:id="colAction" prefWidth="140" text="Actions" />
                 </columns>
             </TableView>
 

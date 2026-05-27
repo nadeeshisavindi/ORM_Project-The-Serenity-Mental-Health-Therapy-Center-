@@ -10,12 +10,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.example.orm_project.bo.BOFactory;
-import  org.example.orm_project.bo.BOTypes;
-import  org.example.orm_project.bo.custom.UserBO;
-import  org.example.orm_project.dto.tm.UserTM;
-import  org.example.orm_project.entity.User;
+import org.example.orm_project.bo.BOTypes;
+import org.example.orm_project.bo.custom.UserBO;
+import org.example.orm_project.dto.tm.UserTM;
+import org.example.orm_project.entity.User;
 import org.mindrot.jbcrypt.BCrypt;
-//import org.mindrot.jbcrypt.BCrypt;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,8 +44,8 @@ public class UserController implements Initializable {
             (UserBO) BOFactory.getInstance().getBO(BOTypes.USER);
 
     private final ObservableList<UserTM> masterList = FXCollections.observableArrayList();
-    private boolean isEditMode    = false;
-    private boolean showPassword  = false;
+    private boolean isEditMode   = false;
+    private boolean showPassword = false;
     private String  editingUserId = null;
 
     private static final String USERNAME_REGEX = "^[a-zA-Z0-9._]{3,30}$";
@@ -54,13 +53,12 @@ public class UserController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cmbRole.getItems().addAll("ADMIN", "RECEPTIONIST");
+        cmbRole.getItems().addAll("ADMIN", "THERAPIST");
         setupTable();
         setupSearch();
         loadTableData();
         generateNextId();
 
-        // Password visible field sync
         txtPasswordVisible.textProperty().addListener((obs, o, val) -> {
             if (showPassword) txtPassword.setText(val);
         });
@@ -91,8 +89,10 @@ public class UserController implements Initializable {
                         "-fx-background-radius:5;-fx-padding:4 10;-fx-cursor:hand;-fx-font-size:11px;");
                 btnDelete.setStyle("-fx-background-color:#e74c3c;-fx-text-fill:white;" +
                         "-fx-background-radius:5;-fx-padding:4 10;-fx-cursor:hand;-fx-font-size:11px;");
-                btnEdit.setOnAction(e   -> populateForm(getTableView().getItems().get(getIndex())));
-                btnDelete.setOnAction(e -> handleDelete(getTableView().getItems().get(getIndex())));
+                btnEdit.setOnAction(e ->
+                        populateForm(getTableView().getItems().get(getIndex())));
+                btnDelete.setOnAction(e ->
+                        handleDelete(getTableView().getItems().get(getIndex())));
             }
             @Override protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
@@ -103,21 +103,21 @@ public class UserController implements Initializable {
 
     private void setupSearch() {
         FilteredList<UserTM> filtered = new FilteredList<>(masterList, p -> true);
-        txtSearch.textProperty().addListener((obs, o, val) -> filtered.setPredicate(row -> {
-            if (val == null || val.isEmpty()) return true;
-            String lower = val.toLowerCase();
-            return row.getUsername().toLowerCase().contains(lower)
-                    || row.getRole().toLowerCase().contains(lower);
-        }));
+        txtSearch.textProperty().addListener((obs, o, val) ->
+                filtered.setPredicate(row -> {
+                    if (val == null || val.isEmpty()) return true;
+                    String lower = val.toLowerCase();
+                    return row.getUsername().toLowerCase().contains(lower)
+                            || row.getRole().toLowerCase().contains(lower);
+                }));
         tblUser.setItems(filtered);
     }
 
     private void loadTableData() {
         masterList.clear();
         try {
-            for (User u : userBO.getAllUsers()) {
+            for (User u : userBO.getAllUsers())
                 masterList.add(new UserTM(u.getId(), u.getUsername(), u.getRole()));
-            }
         } catch (Exception e) {
             showError("Failed to load: " + e.getMessage());
         }
@@ -159,7 +159,6 @@ public class UserController implements Initializable {
             user.setRole(cmbRole.getValue());
 
             if (!isEditMode) {
-                // BCrypt encrypt — coursework requirement
                 user.setPassword(BCrypt.hashpw(rawPassword, BCrypt.gensalt()));
                 if (userBO.saveUser(user)) {
                     showSuccess("User saved successfully!");
@@ -167,15 +166,14 @@ public class UserController implements Initializable {
                     handleClear();
                 }
             } else {
-                // Edit mode — new password typed නම් update, නැත්නම් existing keep
                 String newPass = txtNewPassword.getText().trim();
                 if (!newPass.isEmpty()) {
                     if (!newPass.matches(PASSWORD_REGEX)) {
-                        showError("New password must be at least 6 characters."); return;
+                        showError("New password must be at least 6 characters.");
+                        return;
                     }
                     user.setPassword(BCrypt.hashpw(newPass, BCrypt.gensalt()));
                 } else {
-                    // Existing password keep කරන්න
                     User existing = userBO.searchUser(editingUserId);
                     user.setPassword(existing.getPassword());
                 }
@@ -207,7 +205,8 @@ public class UserController implements Initializable {
 
     private void handleDelete(UserTM row) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Delete user \"" + row.getUsername() + "\"?", ButtonType.YES, ButtonType.NO);
+                "Delete user \"" + row.getUsername() + "\"?",
+                ButtonType.YES, ButtonType.NO);
         alert.setHeaderText("Confirm Delete");
         alert.showAndWait().ifPresent(bt -> {
             if (bt == ButtonType.YES) {
@@ -237,10 +236,7 @@ public class UserController implements Initializable {
         vboxChangePass.setVisible(false);
         vboxChangePass.setManaged(false);
         btnSave.setText("Save");
-
-        // Reset password field visibility
         if (showPassword) handleTogglePassword();
-
         generateNextId();
         hideMessage();
     }
@@ -250,14 +246,11 @@ public class UserController implements Initializable {
             showError("Username must be 3-30 chars, letters/numbers/._");
             txtUsername.requestFocus(); return false;
         }
-
-        // Edit mode ලා password fields skip කරන්න (change pass section use කරනවා)
         if (!isEditMode) {
             String pass = showPassword
                     ? txtPasswordVisible.getText().trim()
                     : txtPassword.getText().trim();
             String confirm = txtConfirmPassword.getText().trim();
-
             if (!pass.matches(PASSWORD_REGEX)) {
                 showError("Password must be at least 6 characters.");
                 txtPassword.requestFocus(); return false;
@@ -267,7 +260,6 @@ public class UserController implements Initializable {
                 txtConfirmPassword.requestFocus(); return false;
             }
         }
-
         if (cmbRole.getValue() == null) {
             showError("Please select a Role."); return false;
         }

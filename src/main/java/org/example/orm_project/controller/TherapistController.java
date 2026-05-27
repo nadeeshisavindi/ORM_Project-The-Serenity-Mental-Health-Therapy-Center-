@@ -37,7 +37,8 @@ public class TherapistController implements Initializable {
     @FXML private TableColumn<TherapistTM, String> colSpecialization;
     @FXML private TableColumn<TherapistTM, String> colPhone;
     @FXML private TableColumn<TherapistTM, String> colEmail;
-    @FXML private TableColumn<TherapistTM, Void> colAction;
+    @FXML private TableColumn<TherapistTM, String> colAvailability;
+    @FXML private TableColumn<TherapistTM, Void>   colAction;
 
     private final TherapistBO therapistBO =
             (TherapistBO) BOFactory.getInstance().getBO(BOTypes.THERAPIST);
@@ -68,13 +69,7 @@ public class TherapistController implements Initializable {
 
     private void setupCombo() {
         cmbSpecialization.getItems().addAll(
-                "CBT",
-                "Mindfulness",
-                "DBT",
-                "Group Therapy",
-                "Family Counseling"
-        );
-
+                "CBT", "Mindfulness", "DBT", "Group Therapy", "Family Counseling");
         cmbAvailability.getItems().addAll("Available", "Busy", "On Leave");
     }
 
@@ -84,17 +79,22 @@ public class TherapistController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colSpecialization.setCellValueFactory(new PropertyValueFactory<>("specialization"));
+        colAvailability.setCellValueFactory(new PropertyValueFactory<>("availability"));
 
         colAction.setCellFactory(col -> new TableCell<>() {
             private final Button editBtn = new Button("Edit");
-            private final Button delBtn = new Button("Delete");
+            private final Button delBtn  = new Button("Delete");
             private final HBox box = new HBox(6, editBtn, delBtn);
-
             {
-                editBtn.setOnAction(e -> populateForm(getTableView().getItems().get(getIndex())));
-                delBtn.setOnAction(e -> deleteRow(getTableView().getItems().get(getIndex())));
+                editBtn.setStyle("-fx-background-color:#2B3990;-fx-text-fill:white;" +
+                        "-fx-background-radius:5;-fx-padding:4 10;-fx-cursor:hand;-fx-font-size:11px;");
+                delBtn.setStyle("-fx-background-color:#e74c3c;-fx-text-fill:white;" +
+                        "-fx-background-radius:5;-fx-padding:4 10;-fx-cursor:hand;-fx-font-size:11px;");
+                editBtn.setOnAction(e ->
+                        populateForm(getTableView().getItems().get(getIndex())));
+                delBtn.setOnAction(e ->
+                        deleteRow(getTableView().getItems().get(getIndex())));
             }
-
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
@@ -105,35 +105,29 @@ public class TherapistController implements Initializable {
 
     private void setupSearch() {
         FilteredList<TherapistTM> filtered = new FilteredList<>(masterList, p -> true);
-
-        txtSearch.textProperty().addListener((obs, o, v) -> {
-            filtered.setPredicate(t -> {
-                if (v == null || v.isEmpty()) return true;
-                String key = v.toLowerCase();
-
-                return t.getName().toLowerCase().contains(key)
-                        || t.getEmail().toLowerCase().contains(key)
-                        || t.getPhone().toLowerCase().contains(key)
-                        || t.getSpecialization().toLowerCase().contains(key);
-            });
-        });
-
+        txtSearch.textProperty().addListener((obs, o, v) ->
+                filtered.setPredicate(t -> {
+                    if (v == null || v.isEmpty()) return true;
+                    String key = v.toLowerCase();
+                    return t.getName().toLowerCase().contains(key)
+                            || t.getEmail().toLowerCase().contains(key)
+                            || t.getPhone().toLowerCase().contains(key)
+                            || t.getSpecialization().toLowerCase().contains(key);
+                }));
         tblTherapist.setItems(filtered);
     }
 
     private void loadData() {
         masterList.clear();
         try {
-            List<Therapist> list = therapistBO.getAllTherapists();
-
-            for (Therapist t : list) {
-                // Constructor එකේ පිළිවෙළටම data පාස් කර ඇත (id, name, email, phone, specialization)
+            for (Therapist t : therapistBO.getAllTherapists()) {
                 masterList.add(new TherapistTM(
                         t.getId(),
                         t.getName(),
                         t.getEmail(),
                         t.getPhone(),
-                        t.getSpecialization()
+                        t.getSpecialization(),
+                        t.getAvailability() != null ? t.getAvailability() : ""
                 ));
             }
         } catch (Exception e) {
@@ -141,11 +135,9 @@ public class TherapistController implements Initializable {
         }
     }
 
-    // save
     @FXML
     private void handleSave() {
         if (!validate()) return;
-
         try {
             Therapist t = new Therapist();
             t.setId(txtId.getText());
@@ -153,10 +145,11 @@ public class TherapistController implements Initializable {
             t.setEmail(txtEmail.getText());
             t.setPhone(txtPhone.getText());
             t.setSpecialization(cmbSpecialization.getValue());
+            t.setAvailability(cmbAvailability.getValue());
 
-            boolean ok = isEditMode ?
-                    therapistBO.updateTherapist(t) :
-                    therapistBO.saveTherapist(t);
+            boolean ok = isEditMode
+                    ? therapistBO.updateTherapist(t)
+                    : therapistBO.saveTherapist(t);
 
             if (ok) {
                 showSuccess(isEditMode ? "Updated!" : "Saved!");
@@ -171,34 +164,37 @@ public class TherapistController implements Initializable {
     @FXML
     private void handleDelete() {
         TherapistTM selected = tblTherapist.getSelectionModel().getSelectedItem();
-
-        if (selected == null) {
-            showError("Select a row first");
-            return;
-        }
+        if (selected == null) { showError("Select a row first"); return; }
         deleteRow(selected);
     }
 
     private void populateForm(TherapistTM t) {
         isEditMode = true;
-
         txtId.setText(t.getId());
         txtName.setText(t.getName());
         txtEmail.setText(t.getEmail());
         txtPhone.setText(t.getPhone());
         cmbSpecialization.setValue(t.getSpecialization());
-
+        cmbAvailability.setValue(t.getAvailability());
         btnSave.setText("Update");
     }
 
     private void deleteRow(TherapistTM t) {
-        try {
-            therapistBO.deleteTherapist(t.getId());
-            masterList.remove(t);
-            showSuccess("Deleted!");
-        } catch (Exception e) {
-            showError(e.getMessage());
-        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Delete therapist \"" + t.getName() + "\"?",
+                ButtonType.YES, ButtonType.NO);
+        alert.setHeaderText("Confirm Delete");
+        alert.showAndWait().ifPresent(bt -> {
+            if (bt == ButtonType.YES) {
+                try {
+                    therapistBO.deleteTherapist(t.getId());
+                    masterList.remove(t);
+                    showSuccess("Deleted!");
+                } catch (Exception e) {
+                    showError(e.getMessage());
+                }
+            }
+        });
     }
 
     @FXML
@@ -207,42 +203,33 @@ public class TherapistController implements Initializable {
     }
 
     @FXML
-    private void handleClear() {
-        clearForm();
-    }
+    private void handleClear() { clearForm(); }
 
     private void clearForm() {
         isEditMode = false;
-
         txtName.clear();
         txtPhone.clear();
         txtEmail.clear();
         cmbSpecialization.setValue(null);
         cmbAvailability.setValue(null);
-
         btnSave.setText("Save");
         generateId();
     }
 
     private boolean validate() {
-        if (!txtName.getText().matches(NAME_REGEX)) return error("Invalid name");
-        if (cmbSpecialization.getValue() == null) return error("Select specialization");
-        if (!txtPhone.getText().matches(PHONE_REGEX)) return error("Invalid phone");
-        if (!txtEmail.getText().matches(EMAIL_REGEX)) return error("Invalid email");
-
+        if (!txtName.getText().matches(NAME_REGEX))      return error("Invalid name");
+        if (cmbSpecialization.getValue() == null)        return error("Select specialization");
+        if (!txtPhone.getText().matches(PHONE_REGEX))    return error("Invalid phone");
+        if (!txtEmail.getText().matches(EMAIL_REGEX))    return error("Invalid email");
         return true;
     }
 
-    private boolean error(String msg) {
-        showError(msg);
-        return false;
-    }
+    private boolean error(String msg) { showError(msg); return false; }
 
     private void showError(String msg) {
         lblMessage.setText("⚠ " + msg);
         lblMessage.setStyle("-fx-text-fill:red;");
     }
-
     private void showSuccess(String msg) {
         lblMessage.setText("✔ " + msg);
         lblMessage.setStyle("-fx-text-fill:green;");
